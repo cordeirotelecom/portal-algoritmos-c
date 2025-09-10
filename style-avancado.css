@@ -1,5 +1,6 @@
 /* ============================================================
-   SISTEMA EDUCACIONAL AVANÇADO - ESTILOS CSS
+   SISTEMA EDUCACIONAL ULTRA AVANÇADO - ESTILOS CSS v2.0
+   Com IA, Gamificação e Animações Avançadas
    ============================================================ */
 
 /* Reset e Base */
@@ -10,26 +11,171 @@
 }
 
 :root {
+    /* Cores primárias com gradientes modernos */
     --primary-color: #4f46e5;
     --secondary-color: #7c3aed;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
+    --neural-color: #667eea;
+    
+    /* Gradientes avançados */
     --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --neural-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
+    --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --warning-gradient: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
+    
+    /* Sombras e efeitos */
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     --card-shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.2);
+    --glow-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+    --neural-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    
+    /* Bordas e raios */
     --border-radius: 15px;
+    --border-radius-lg: 25px;
+    --border-glass: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Transições e animações */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+    --transition-slow: all 0.5s ease;
     --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Tipografia */
+    --font-primary: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-code: 'Fira Code', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
 }
 
 body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-primary);
     background: var(--background-gradient);
     min-height: 100vh;
     color: #1e293b;
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Efeito de partículas de fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    animation: particleFloat 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+/* Loader neural avançado */
+.advanced-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.loader-content {
+    text-align: center;
+    color: white;
+    animation: fadeInScale 1s var(--animation-bounce);
+}
+
+.neural-network {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto 2rem;
+}
+
+.neuron {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--neural-gradient);
+    border-radius: 50%;
+    animation: neuronPulse 2s infinite;
+    box-shadow: var(--glow-shadow);
+}
+
+.neuron:nth-child(1) { top: 0; left: 0; animation-delay: 0s; }
+.neuron:nth-child(2) { top: 40px; left: 90px; animation-delay: 0.5s; }
+.neuron:nth-child(3) { top: 80px; left: 180px; animation-delay: 1s; }
+
+.connection {
+    position: absolute;
+    height: 2px;
+    background: var(--neural-gradient);
+    animation: connectionPulse 3s infinite;
+    border-radius: 1px;
+}
+
+.connection:nth-child(4) {
+    top: 10px;
+    left: 20px;
+    width: 80px;
+    transform: rotate(26deg);
+}
+
+.connection:nth-child(5) {
+    top: 50px;
+    left: 110px;
+    width: 80px;
+    transform: rotate(26deg);
+}
+
+.loading-progress {
+    width: 300px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.progress-line {
+    height: 100%;
+    background: var(--neural-gradient);
+    border-radius: 2px;
+    animation: progressFlow 3s infinite;
+}
+
+@keyframes neuronPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes connectionPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes progressFlow {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Layout Principal */

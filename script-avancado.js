@@ -1,5 +1,6 @@
 // ============================================================
-// SISTEMA EDUCACIONAL AVANÇADO - ALGORITMOS EM C
+// SISTEMA EDUCACIONAL ULTRA AVANÇADO - ALGORITMOS EM C
+// Versão 2.0 - Com IA Educacional e Análise Preditiva
 // ============================================================
 
 // Estado global da aplicação
@@ -12,6 +13,9 @@ let achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
 let userProgress = JSON.parse(localStorage.getItem('userProgress') || '{}');
 let studyTime = JSON.parse(localStorage.getItem('studyTime') || '0');
 let startTime = Date.now();
+let aiTutor = new AIEducationalTutor();
+let performanceMetrics = new PerformanceAnalyzer();
+let codeIntelligence = new CodeIntelligenceEngine();
 
 // Sistema de Conquistas Gamificado
 const achievementsData = {
