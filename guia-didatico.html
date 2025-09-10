@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Didático Completo - Algoritmos em C</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .guide-header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .guide-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            background: #f8fafc;
+        }
+        
+        .step-number {
+            background: #4f46e5;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .highlight-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background: #fecaca;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background: #dcfce7;
+            border: 2px solid #16a34a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .concept-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            border-color: #4f46e5;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #4f46e5, #059669);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+    <div class="guide-container">
+        <div class="guide-header">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">📚 Guia Didático Completo</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">
+                Aprenda Algoritmos e Estruturas de Dados em C passo a passo
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="index.html" style="background: white; color: #4f46e5; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: bold; margin: 0 0.5rem;">
+                    🏠 Página Principal
+                </a>
+                <a href="exercicios.html" style="background: rgba(255,255,255,0.2); color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: bold; margin: 0 0.5rem;">
+                    🎯 Exercícios
+                </a>
+            </div>
+        </div>
+
+        <!-- Roteiro de Aprendizagem -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">1</span>
+                🗺️ Roteiro de Aprendizagem
+            </h2>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3 style="color: #059669;">🟢 Iniciante (Semana 1-2)</h3>
+                    <ul>
+                        <li>Conceitos básicos de arrays</li>
+                        <li>Declaração e inicialização</li>
+                        <li>Acesso aos elementos</li>
+                        <li>Loops simples com vetores</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3 style="color: #f59e0b;">🟡 Intermediário (Semana 3-4)</h3>
+                    <ul>
+                        <li>Matrizes bidimensionais</li>
+                        <li>Algoritmos de busca</li>
+                        <li>Operações matemáticas</li>
+                        <li>Ponteiros básicos</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h3 style="color: #dc2626;">🔴 Avançado (Semana 5-6)</h3>
+                    <ul>
+                        <li>Algoritmos de ordenação</li>
+                        <li>Análise de complexidade</li>
+                        <li>Ponteiros avançados</li>
+                        <li>Estruturas dinâmicas</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metodologia de Estudo -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">2</span>
+                📖 Como Estudar Efetivamente
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div class="success-box">
+                    <h3>✅ Faça</h3>
+                    <ul>
+                        <li><strong>Pratique diariamente:</strong> 30-60 minutos por dia</li>
+                        <li><strong>Código na mão:</strong> Digite, não copie</li>
+                        <li><strong>Teste variações:</strong> Modifique os exemplos</li>
+                        <li><strong>Explique em voz alta:</strong> Ensine para si mesmo</li>
+                        <li><strong>Desenhe diagramas:</strong> Visualize as estruturas</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>❌ Evite</h3>
+                    <ul>
+                        <li><strong>Decorar código:</strong> Entenda a lógica</li>
+                        <li><strong>Pular conceitos:</strong> Base sólida é essencial</li>
+                        <li><strong>Estudar apenas teoria:</strong> Prática é fundamental</li>
+                        <li><strong>Comparar com outros:</strong> Cada um tem seu ritmo</li>
+                        <li><strong>Desistir no primeiro erro:</strong> Erro faz parte</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo a Passo: Vetores -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">3</span>
+                📊 Vetores: Passo a Passo Detalhado
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #059669;">🎯 Objetivo: Dominar Arrays Unidimensionais</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Fase 1: Entendimento Conceitual (30 min)</h4>
+                    <ol style="line-height: 2;">
+                        <li><strong>Analogia:</strong> Pense em um vetor como uma rua com casas numeradas</li>
+                        <li><strong>Índices:</strong> O número da casa começa em 0, não 1</li>
+                        <li><strong>Homogeneidade:</strong> Todas as casas guardam o mesmo tipo de objeto</li>
+                        <li><strong>Tamanho fixo:</strong> A rua tem um número definido de casas</li>
+                    </ol>
+                    
+                    <div class="highlight-box">
+                        <strong>💡 Dica Visual:</strong> Desenhe um vetor no papel antes de programar!
+                        <div class="code-block">
+Índices: [0] [1] [2] [3] [4]
+Valores: [10][25][7 ][33][15]
+Nome:    numeros
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Fase 2: Primeiro Código (30 min)</h4>
+                    <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    // PASSO 1: Declarar e inicializar
+    int numeros[5] = {10, 25, 7, 33, 15};
+    
+    // PASSO 2: Exibir cada elemento
+    printf("Elementos do vetor:\n");
+    for(int i = 0; i &lt; 5; i++) {
+        printf("numeros[%d] = %d\n", i, numeros[i]);
+    }
+    
+    return 0;
+}</pre>
+                    </div>
+                    
+                    <div class="success-box">
+                        <strong>🎯 Execute este código e observe:</strong>
+                        <ul>
+                            <li>Como os índices vão de 0 a 4</li>
+                            <li>A sintaxe numeros[i] para acessar elementos</li>
+                            <li>O loop percorre todos os elementos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Fase 3: Operações Básicas (45 min)</h4>
+                    <div class="code-block">
+<pre>// OPERAÇÃO 1: Somar todos os elementos
+int soma = 0;
+for(int i = 0; i &lt; 5; i++) {
+    soma += numeros[i];  // Equivale a: soma = soma + numeros[i]
+}
+printf("Soma total: %d\n", soma);
+
+// OPERAÇÃO 2: Encontrar o maior elemento
+int maior = numeros[0];  // Assume que o primeiro é o maior
+for(int i = 1; i &lt; 5; i++) {  // Começa do segundo elemento
+    if(numeros[i] &gt; maior) {
+        maior = numeros[i];
+    }
+}
+printf("Maior elemento: %d\n", maior);
+
+// OPERAÇÃO 3: Buscar um elemento
+int buscar = 33;
+int encontrado = -1;  // -1 significa "não encontrado"
+for(int i = 0; i &lt; 5; i++) {
+    if(numeros[i] == buscar) {
+        encontrado = i;
+        break;  // Para de procurar quando encontra
+    }
+}
+
+if(encontrado != -1) {
+    printf("Elemento %d encontrado na posição %d\n", buscar, encontrado);
+} else {
+    printf("Elemento %d não encontrado\n", buscar);
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo a Passo: Matrizes -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">4</span>
+                🔢 Matrizes: Do Básico ao Avançado
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #059669;">🎯 Objetivo: Dominar Arrays Bidimensionais</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Conceito: Vetor de Vetores</h4>
+                    <p>Uma matriz é um vetor onde cada elemento é, por si só, um vetor.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>💡 Visualização:</strong>
+                        <div class="code-block">
+int matriz[3][3] = {
+    {1, 2, 3},    // Linha 0
+    {4, 5, 6},    // Linha 1  
+    {7, 8, 9}     // Linha 2
+};
+
+// Acesso: matriz[linha][coluna]
+// matriz[1][2] = 6 (linha 1, coluna 2)
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Exemplo Prático: Jogo da Velha</h4>
+                    <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    // Tabuleiro do jogo da velha
+    char tabuleiro[3][3] = {
+        {'X', 'O', 'X'},
+        {'O', 'X', 'O'},
+        {'X', 'O', 'X'}
+    };
+    
+    // Exibir o tabuleiro
+    printf("Tabuleiro:\n");
+    for(int i = 0; i &lt; 3; i++) {
+        for(int j = 0; j &lt; 3; j++) {
+            printf("%c ", tabuleiro[i][j]);
+        }
+        printf("\n");  // Nova linha após cada linha da matriz
+    }
+    
+    return 0;
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo a Passo: Ponteiros -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">5</span>
+                👉 Ponteiros: Desmistificando o Conceito
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #059669;">🎯 Objetivo: Entender Endereços de Memória</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Analogia: Sistema Postal</h4>
+                    <div class="highlight-box">
+                        <strong>🏠 Pense assim:</strong>
+                        <ul style="margin: 1rem 0;">
+                            <li><strong>Variável:</strong> É como uma casa que guarda um valor</li>
+                            <li><strong>Endereço:</strong> É como o CEP da casa na memória</li>
+                            <li><strong>Ponteiro:</strong> É como um papel que anota o CEP</li>
+                        </ul>
+                        
+                        <div style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                            <code>
+                                int x = 42;        // Casa que guarda o valor 42<br>
+                                int *ptr = &x;     // Papel que anota o endereço da casa
+                            </code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Código Passo a Passo</h4>
+                    <div class="code-block">
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    // PASSO 1: Criar uma variável
+    int x = 42;
+    printf("Valor de x: %d\n", x);
+    printf("Endereço de x: %p\n", &x);  // & = "endereço de"
+    
+    // PASSO 2: Criar um ponteiro
+    int *ptr = &x;  // ptr aponta para o endereço de x
+    printf("Valor do ponteiro: %p\n", ptr);
+    printf("Valor apontado: %d\n", *ptr);  // * = "valor no endereço"
+    
+    // PASSO 3: Modificar através do ponteiro
+    *ptr = 100;  // Altera o valor na memória apontada
+    printf("Novo valor de x: %d\n", x);  // x agora vale 100!
+    
+    return 0;
+}</pre>
+                    </div>
+                    
+                    <div class="success-box">
+                        <strong>🔑 Operadores essenciais:</strong>
+                        <ul>
+                            <li><code>&</code> (ampersand): "endereço de" - pega o endereço de uma variável</li>
+                            <li><code>*</code> (asterisco): "valor em" - acessa o valor no endereço apontado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Análise de Complexidade -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">6</span>
+                📈 Análise de Complexidade: O(?)
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #059669;">🎯 Objetivo: Avaliar Eficiência de Algoritmos</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #4f46e5;">Pergunta Central: "Quanto tempo demora?"</h4>
+                    <p>A análise de complexidade responde: se eu dobrar o tamanho dos dados, quanto mais tempo meu algoritmo vai demorar?</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card" style="border-color: #16a34a;">
+                            <h4 style="color: #16a34a;">O(1) - Constante</h4>
+                            <p><strong>Resposta:</strong> Sempre o mesmo tempo</p>
+                            <div class="code-block">
+<pre>// Acessar elemento do array
+return numeros[3];  // Sempre rápido</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-card" style="border-color: #f59e0b;">
+                            <h4 style="color: #f59e0b;">O(n) - Linear</h4>
+                            <p><strong>Resposta:</strong> Dobra o tempo se dobrar dados</p>
+                            <div class="code-block">
+<pre>// Buscar elemento no array
+for(int i = 0; i &lt; n; i++) {
+    if(numeros[i] == buscar) return i;
+}</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-card" style="border-color: #dc2626;">
+                            <h4 style="color: #dc2626;">O(n²) - Quadrática</h4>
+                            <p><strong>Resposta:</strong> Quadruplica o tempo se dobrar dados</p>
+                            <div class="code-block">
+<pre>// Bubble Sort
+for(int i = 0; i &lt; n; i++) {
+    for(int j = 0; j &lt; n-1; j++) {
+        // comparações...
+    }
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cronograma Semanal -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">7</span>
+                📅 Cronograma Semanal Detalhado
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="concept-card">
+                        <h3 style="color: #059669;">📅 Semana 1: Fundamentos</h3>
+                        <strong>Segunda-feira:</strong> Conceitos de vetores (1h)<br>
+                        <strong>Terça-feira:</strong> Declaração e inicialização (1h)<br>
+                        <strong>Quarta-feira:</strong> Acesso aos elementos (1h)<br>
+                        <strong>Quinta-feira:</strong> Loops com vetores (1h)<br>
+                        <strong>Sexta-feira:</strong> Exercícios básicos (1h)<br>
+                        <strong>Sábado:</strong> Revisão e prática (2h)<br>
+                        <strong>Domingo:</strong> Descanso ou revisão leve
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h3 style="color: #f59e0b;">📅 Semana 2: Operações</h3>
+                        <strong>Segunda-feira:</strong> Soma e média (1h)<br>
+                        <strong>Terça-feira:</strong> Maior e menor elemento (1h)<br>
+                        <strong>Quarta-feira:</strong> Busca linear (1h)<br>
+                        <strong>Quinta-feira:</strong> Contadores e flags (1h)<br>
+                        <strong>Sexta-feira:</strong> Exercícios intermediários (1h)<br>
+                        <strong>Sábado:</strong> Projeto prático (2h)<br>
+                        <strong>Domingo:</strong> Revisão
+                    </div>
+                    
+                    <div class="concept-card">
+                        <h3 style="color: #dc2626;">📅 Semana 3: Matrizes</h3>
+                        <strong>Segunda-feira:</strong> Conceito de matriz (1h)<br>
+                        <strong>Terça-feira:</strong> Declaração e acesso (1h)<br>
+                        <strong>Quarta-feira:</strong> Loops aninhados (1h)<br>
+                        <strong>Quinta-feira:</strong> Operações em linhas/colunas (1h)<br>
+                        <strong>Sexta-feira:</strong> Diagonais e transposição (1h)<br>
+                        <strong>Sábado:</strong> Jogo da velha (2h)<br>
+                        <strong>Domingo:</strong> Revisão
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checklist de Progresso -->
+        <div class="guide-section">
+            <h2 style="color: #4f46e5; display: flex; align-items: center;">
+                <span class="step-number">8</span>
+                ✅ Checklist de Progresso
+            </h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="color: #059669;">🎯 Marque conforme for dominando cada conceito:</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <div class="success-box">
+                        <h4>📊 Vetores - Básico</h4>
+                        <label><input type="checkbox"> Entendo o conceito de array</label><br>
+                        <label><input type="checkbox"> Sei declarar e inicializar</label><br>
+                        <label><input type="checkbox"> Consigo acessar elementos</label><br>
+                        <label><input type="checkbox"> Uso loops para percorrer</label><br>
+                        <label><input type="checkbox"> Calculo soma e média</label><br>
+                        <label><input type="checkbox"> Encontro maior/menor elemento</label>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>🔢 Matrizes - Intermediário</h4>
+                        <label><input type="checkbox"> Entendo arrays 2D</label><br>
+                        <label><input type="checkbox"> Uso loops aninhados</label><br>
+                        <label><input type="checkbox"> Acesso [linha][coluna]</label><br>
+                        <label><input type="checkbox"> Opero em linhas/colunas</label><br>
+                        <label><input type="checkbox"> Trabalho com diagonais</label><br>
+                        <label><input type="checkbox"> Multiplico matrizes</label>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <h4>👉 Ponteiros - Avançado</h4>
+                        <label><input type="checkbox"> Entendo endereços de memória</label><br>
+                        <label><input type="checkbox"> Uso operadores & e *</label><br>
+                        <label><input type="checkbox"> Passo por referência</label><br>
+                        <label><input type="checkbox"> Faço aritmética de ponteiros</label><br>
+                        <label><input type="checkbox"> Relaciono ponteiros e arrays</label><br>
+                        <label><input type="checkbox"> Crio funções com ponteiros</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 15px;">
+            <h3 style="color: #4f46e5;">🎓 Parabéns por chegar até aqui!</h3>
+            <p style="color: #64748b; margin: 1rem 0;">
+                Lembre-se: programação é como aprender um instrumento musical - 
+                requer prática constante e paciência. Cada erro é uma oportunidade de aprender!
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="index.html" style="background: #4f46e5; color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: bold; margin: 0 0.5rem;">
+                    🚀 Ir para o Simulador
+                </a>
+                <a href="exercicios.html" style="background: #059669; color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: bold; margin: 0 0.5rem;">
+                    💪 Praticar Exercícios
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

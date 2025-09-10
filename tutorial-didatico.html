@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Super Didático - Algoritmos em C</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+        .lesson {
+            margin-bottom: 4rem;
+            border: 3px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            background: #f8fafc;
+        }
+
+        .lesson-title {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: -2rem -2rem 2rem -2rem;
+            font-size: 1.5rem;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .step-number {
+            background: #4f46e5;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+
+        .step-content {
+            margin-top: 1rem;
+        }
+
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .output-example {
+            background: #059669;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+
+        .explanation {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .visual-demo {
+            background: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .memory-boxes {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .memory-box {
+            background: #4f46e5;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 80px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .exercise {
+            background: #dcfce7;
+            border: 2px solid #16a34a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning {
+            background: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip {
+            background: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 200px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #4f46e5;
+            border-radius: 8px;
+            margin: 0.2rem 0;
+            transition: background 0.3s;
+        }
+
+        .nav-item:hover {
+            background: #e0e7ff;
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                display: none;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tutorial-container">
+        <div class="header">
+            <h1>🎓 Tutorial Super Didático</h1>
+            <p>Aprenda Algoritmos em C de Forma Prática e Visual</p>
+        </div>
+
+        <div class="content">
+            <!-- Lição 1: Vetores do Zero -->
+            <div class="lesson" id="vetores">
+                <div class="lesson-title">📊 Lição 1: Vetores - Do Zero ao Expert</div>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>🤔 Por que precisamos de vetores?</h3>
+                        
+                        <div class="explanation">
+                            <h4>🚫 Situação SEM vetores (PROBLEMA):</h4>
+                            <p>Imagine que você precisa armazenar as idades de 5 amigos:</p>
+                            
+                            <div class="code-example">
+int idade_amigo1 = 20;
+int idade_amigo2 = 22;
+int idade_amigo3 = 19;
+int idade_amigo4 = 25;
+int idade_amigo5 = 21;
+
+// E se fossem 100 amigos? 😱
+// Você teria que criar 100 variáveis diferentes!</div>
+                        </div>
+
+                        <div class="explanation">
+                            <h4>✅ Situação COM vetores (SOLUÇÃO):</h4>
+                            <div class="code-example">
+int idades[5] = {20, 22, 19, 25, 21};
+
+// Pronto! Todas as idades em uma só estrutura
+// E se fossem 1000? Só mudar o número: idades[1000]</div>
+                        </div>
+
+                        <div class="visual-demo">
+                            <h4>🧠 Como fica na memória:</h4>
+                            <div class="memory-boxes">
+                                <div class="memory-box">idades[0]<br>20</div>
+                                <div class="memory-box">idades[1]<br>22</div>
+                                <div class="memory-box">idades[2]<br>19</div>
+                                <div class="memory-box">idades[3]<br>25</div>
+                                <div class="memory-box">idades[4]<br>21</div>
+                            </div>
+                            <p><strong>💡 IMPORTANTE:</strong> Em C, sempre começamos do índice 0!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>📝 Seu Primeiro Programa com Vetores</h3>
+                        
+                        <div class="tip">
+                            🎯 <strong>Objetivo:</strong> Criar um programa que armazena 3 números e os exibe
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // PASSO 1: Declarar o vetor
+    // Sintaxe: tipo nome[tamanho];
+    int numeros[3];
+    
+    // PASSO 2: Colocar valores (método 1 - um por vez)
+    numeros[0] = 10;  // Primeira posição
+    numeros[1] = 20;  // Segunda posição
+    numeros[2] = 30;  // Terceira posição
+    
+    // PASSO 3: Mostrar os valores
+    printf("Primeiro número: %d\n", numeros[0]);
+    printf("Segundo número: %d\n", numeros[1]);
+    printf("Terceiro número: %d\n", numeros[2]);
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+Primeiro número: 10
+Segundo número: 20
+Terceiro número: 30</div>
+
+                        <div class="exercise">
+                            <h4>🏋️‍♀️ EXERCÍCIO PRÁTICO 1:</h4>
+                            <p>1. Digite o código acima</p>
+                            <p>2. Compile e execute</p>
+                            <p>3. Mude os números para suas idades favoritas</p>
+                            <p>4. Execute novamente e veja o resultado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>🚀 Inicialização Mais Rápida</h3>
+                        
+                        <div class="explanation">
+                            <h4>Método mais eficiente:</h4>
+                            <p>Em vez de definir um por um, podemos inicializar tudo de uma vez:</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Inicialização direta (mais rápido!)
+    int numeros[5] = {10, 20, 30, 40, 50};
+    
+    // Método alternativo - o compilador calcula o tamanho
+    int outros[] = {100, 200, 300};  // Automaticamente será [3]
+    
+    // Mostrar todos usando um loop (mais eficiente!)
+    printf("=== NÚMEROS ===\n");
+    for(int i = 0; i < 5; i++) {
+        printf("Posição %d: %d\n", i, numeros[i]);
+    }
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+=== NÚMEROS ===
+Posição 0: 10
+Posição 1: 20
+Posição 2: 30
+Posição 3: 40
+Posição 4: 50</div>
+
+                        <div class="tip">
+                            💡 <strong>Dica Pro:</strong> Use loops sempre que possível! É mais eficiente e elegante.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>📊 Caso Prático: Sistema de Notas</h3>
+                        
+                        <div class="explanation">
+                            <h4>🎯 Problema Real:</h4>
+                            <p>Criar um sistema que calcule a média de um aluno e determine se foi aprovado</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Notas de 4 provas
+    float notas[4] = {8.5, 7.0, 9.2, 6.8};
+    float soma = 0;
+    
+    printf("=== BOLETIM ESCOLAR ===\n");
+    
+    // Mostrar cada nota e calcular soma
+    for(int i = 0; i < 4; i++) {
+        printf("Prova %d: %.1f pontos\n", i+1, notas[i]);
+        soma += notas[i];  // Equivale a: soma = soma + notas[i]
+    }
+    
+    // Calcular média
+    float media = soma / 4;
+    
+    printf("\n📊 RESULTADO FINAL:\n");
+    printf("Soma total: %.1f pontos\n", soma);
+    printf("Média final: %.1f\n", media);
+    
+    // Verificar aprovação
+    if(media >= 7.0) {
+        printf("Status: ✅ APROVADO!\n");
+        printf("Parabéns! 🎉\n");
+    } else {
+        printf("Status: ❌ REPROVADO\n");
+        printf("Estude mais! 📚\n");
+    }
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+=== BOLETIM ESCOLAR ===
+Prova 1: 8.5 pontos
+Prova 2: 7.0 pontos
+Prova 3: 9.2 pontos
+Prova 4: 6.8 pontos
+
+📊 RESULTADO FINAL:
+Soma total: 31.5 pontos
+Média final: 7.9
+Status: ✅ APROVADO!
+Parabéns! 🎉</div>
+
+                        <div class="exercise">
+                            <h4>🏋️‍♀️ EXERCÍCIO PRÁTICO 2:</h4>
+                            <p>1. Modifique o programa para usar suas notas reais</p>
+                            <p>2. Adicione uma 5ª prova</p>
+                            <p>3. Mude o critério de aprovação para 6.0</p>
+                            <p>4. Adicione uma categoria "RECUPERAÇÃO" para médias entre 5.0 e 6.9</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>🔍 Operações Essenciais com Vetores</h3>
+                        
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int vendas[7] = {15, 23, 18, 31, 27, 19, 22};
+    
+    // ===== OPERAÇÃO 1: SOMA TOTAL =====
+    int total = 0;
+    for(int i = 0; i < 7; i++) {
+        total += vendas[i];
+    }
+    printf("Total de vendas na semana: %d\n", total);
+    
+    // ===== OPERAÇÃO 2: MAIOR VALOR =====
+    int maior = vendas[0];  // Assume que o primeiro é o maior
+    int dia_melhor = 0;
+    
+    for(int i = 1; i < 7; i++) {  // Começa do segundo elemento
+        if(vendas[i] > maior) {
+            maior = vendas[i];
+            dia_melhor = i;
+        }
+    }
+    printf("Melhor dia: %d com %d vendas\n", dia_melhor+1, maior);
+    
+    // ===== OPERAÇÃO 3: MENOR VALOR =====
+    int menor = vendas[0];
+    int dia_pior = 0;
+    
+    for(int i = 1; i < 7; i++) {
+        if(vendas[i] < menor) {
+            menor = vendas[i];
+            dia_pior = i;
+        }
+    }
+    printf("Pior dia: %d com %d vendas\n", dia_pior+1, menor);
+    
+    // ===== OPERAÇÃO 4: BUSCAR VALOR =====
+    int buscar = 31;
+    int encontrado = -1;  // -1 = não encontrado
+    
+    for(int i = 0; i < 7; i++) {
+        if(vendas[i] == buscar) {
+            encontrado = i;
+            break;  // Para a busca quando encontra
+        }
+    }
+    
+    if(encontrado != -1) {
+        printf("Vendas de %d encontradas no dia %d\n", buscar, encontrado+1);
+    } else {
+        printf("Vendas de %d não encontradas\n", buscar);
+    }
+    
+    // ===== OPERAÇÃO 5: MÉDIA =====
+    float media = (float)total / 7;
+    printf("Média de vendas por dia: %.1f\n", media);
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+Total de vendas na semana: 155
+Melhor dia: 4 com 31 vendas
+Pior dia: 1 com 15 vendas
+Vendas de 31 encontradas no dia 4
+Média de vendas por dia: 22.1</div>
+
+                        <div class="warning">
+                            ⚠️ <strong>ERRO COMUM:</strong> Lembre-se que o índice começa em 0, mas para o usuário mostramos como dia 1, 2, 3... Por isso usamos `i+1` na exibição.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lição 2: Matrizes -->
+            <div class="lesson" id="matrizes">
+                <div class="lesson-title">🔢 Lição 2: Matrizes - Vetores Bidimensionais</div>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>🎯 Conceito: O que são Matrizes?</h3>
+                        
+                        <div class="explanation">
+                            <h4>💭 Pensando Visualmente:</h4>
+                            <p><strong>Vetor:</strong> Uma fileira de caixas (1 dimensão)</p>
+                            <p><strong>Matriz:</strong> Uma grade de caixas (2 dimensões - linhas e colunas)</p>
+                        </div>
+
+                        <div class="visual-demo">
+                            <h4>📊 Visualização de uma Matriz 3x3:</h4>
+                            <table style="margin: 1rem auto; border-collapse: collapse;">
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[0][0]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[0][1]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[0][2]</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[1][0]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[1][1]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[1][2]</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[2][0]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[2][1]</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem; background: #e0e7ff;">[2][2]</td>
+                                </tr>
+                            </table>
+                            <p><strong>Acesso:</strong> matriz[linha][coluna]</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Declaração e inicialização de uma matriz 3x3
+    int matriz[3][3] = {
+        {1, 2, 3},    // Linha 0
+        {4, 5, 6},    // Linha 1
+        {7, 8, 9}     // Linha 2
+    };
+    
+    // Acessar um elemento específico
+    printf("Elemento na linha 1, coluna 2: %d\n", matriz[1][2]);
+    // Resultado: 6
+    
+    return 0;
+}</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>🎮 Exemplo Prático: Jogo da Velha</h3>
+                        
+                        <div class="explanation">
+                            <h4>🎯 Aplicação Real:</h4>
+                            <p>Vamos criar um tabuleiro de jogo da velha e mostrar como acessar as posições</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Tabuleiro do jogo da velha
+    char tabuleiro[3][3] = {
+        {'X', 'O', 'X'},
+        {'O', 'X', 'O'},
+        {'X', 'O', 'X'}
+    };
+    
+    printf("=== JOGO DA VELHA ===\n");
+    
+    // Mostrar o tabuleiro
+    for(int linha = 0; linha < 3; linha++) {
+        for(int coluna = 0; coluna < 3; coluna++) {
+            printf(" %c ", tabuleiro[linha][coluna]);
+            if(coluna < 2) printf("|");  // Separador vertical
+        }
+        printf("\n");
+        if(linha < 2) printf("-----------\n");  // Separador horizontal
+    }
+    
+    // Verificar posição específica
+    printf("\nPosição [1][1] = %c\n", tabuleiro[1][1]);
+    
+    // Modificar uma posição
+    tabuleiro[0][0] = 'O';
+    printf("Após mudança, posição [0][0] = %c\n", tabuleiro[0][0]);
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+=== JOGO DA VELHA ===
+ X | O | X 
+-----------
+ O | X | O 
+-----------
+ X | O | X 
+
+Posição [1][1] = X
+Após mudança, posição [0][0] = O</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>📊 Caso Prático: Notas de Turma</h3>
+                        
+                        <div class="explanation">
+                            <h4>🏫 Situação:</h4>
+                            <p>Uma turma tem 3 alunos e cada um fez 4 provas. Vamos calcular a média de cada aluno e da turma.</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Matriz de notas: [aluno][prova]
+    float notas[3][4] = {
+        {8.5, 7.0, 9.2, 6.8},  // Aluno 1
+        {7.5, 8.0, 6.5, 9.0},  // Aluno 2
+        {9.0, 8.5, 7.8, 8.2}   // Aluno 3
+    };
+    
+    printf("=== RELATÓRIO DA TURMA ===\n\n");
+    
+    float soma_turma = 0;
+    int total_notas = 0;
+    
+    // Para cada aluno
+    for(int aluno = 0; aluno < 3; aluno++) {
+        printf("Aluno %d:\n", aluno + 1);
+        
+        float soma_aluno = 0;
+        
+        // Para cada prova do aluno
+        for(int prova = 0; prova < 4; prova++) {
+            printf("  Prova %d: %.1f\n", prova + 1, notas[aluno][prova]);
+            soma_aluno += notas[aluno][prova];
+            soma_turma += notas[aluno][prova];
+            total_notas++;
+        }
+        
+        float media_aluno = soma_aluno / 4;
+        printf("  Média: %.1f ", media_aluno);
+        
+        if(media_aluno >= 7.0) {
+            printf("✅ APROVADO\n");
+        } else {
+            printf("❌ REPROVADO\n");
+        }
+        printf("\n");
+    }
+    
+    // Média geral da turma
+    float media_turma = soma_turma / total_notas;
+    printf("📊 MÉDIA GERAL DA TURMA: %.1f\n", media_turma);
+    
+    return 0;
+}</div>
+
+                        <div class="output-example">
+Saída do programa:
+=== RELATÓRIO DA TURMA ===
+
+Aluno 1:
+  Prova 1: 8.5
+  Prova 2: 7.0
+  Prova 3: 9.2
+  Prova 4: 6.8
+  Média: 7.9 ✅ APROVADO
+
+Aluno 2:
+  Prova 1: 7.5
+  Prova 2: 8.0
+  Prova 3: 6.5
+  Prova 4: 9.0
+  Média: 7.8 ✅ APROVADO
+
+Aluno 3:
+  Prova 1: 9.0
+  Prova 2: 8.5
+  Prova 3: 7.8
+  Prova 4: 8.2
+  Média: 8.4 ✅ APROVADO
+
+📊 MÉDIA GERAL DA TURMA: 8.0</div>
+
+                        <div class="exercise">
+                            <h4>🏋️‍♀️ EXERCÍCIO PRÁTICO 3:</h4>
+                            <p>1. Adicione um 4º aluno à matriz</p>
+                            <p>2. Calcule qual prova teve a maior média geral</p>
+                            <p>3. Encontre o aluno com a maior média individual</p>
+                            <p>4. Conte quantos alunos foram aprovados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lição 3: Ponteiros -->
+            <div class="lesson" id="ponteiros">
+                <div class="lesson-title">👉 Lição 3: Ponteiros - Endereços de Memória</div>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>🏠 Conceito: Endereços de Memória</h3>
+                        
+                        <div class="explanation">
+                            <h4>🏘️ Analogia da Vizinhança:</h4>
+                            <p><strong>Variável normal:</strong> É como uma casa com um valor dentro</p>
+                            <p><strong>Ponteiro:</strong> É como um papel com o ENDEREÇO de uma casa</p>
+                        </div>
+
+                        <div class="visual-demo">
+                            <h4>🧠 Visualização na Memória:</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0;">
+                                <div>
+                                    <h5>Variável Normal:</h5>
+                                    <div style="border: 2px solid #4f46e5; padding: 1rem; border-radius: 8px;">
+                                        <strong>Endereço:</strong> 1000<br>
+                                        <strong>Nome:</strong> idade<br>
+                                        <strong>Valor:</strong> 25
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>Ponteiro:</h5>
+                                    <div style="border: 2px solid #059669; padding: 1rem; border-radius: 8px;">
+                                        <strong>Endereço:</strong> 2000<br>
+                                        <strong>Nome:</strong> ptr<br>
+                                        <strong>Valor:</strong> 1000 (aponta para idade)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Variável normal
+    int idade = 25;
+    
+    // Ponteiro - armazena o ENDEREÇO de idade
+    int *ptr = &idade;
+    
+    printf("=== DEMONSTRAÇÃO DE PONTEIROS ===\n");
+    printf("Valor de idade: %d\n", idade);
+    printf("Endereço de idade: %p\n", (void*)&idade);
+    printf("Valor do ponteiro: %p\n", (void*)ptr);
+    printf("Valor apontado pelo ponteiro: %d\n", *ptr);
+    
+    // Modificar através do ponteiro
+    *ptr = 30;
+    printf("\nApós modificar via ponteiro:\n");
+    printf("Valor de idade: %d\n", idade);
+    printf("Valor apontado pelo ponteiro: %d\n", *ptr);
+    
+    return 0;
+}</div>
+
+                        <div class="tip">
+                            💡 <strong>Operadores Importantes:</strong><br>
+                            <strong>&</strong> = "endereço de" (operador de endereço)<br>
+                            <strong>*</strong> = "valor em" (operador de desreferenciamento)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>🔗 Ponteiros e Vetores: A Conexão</h3>
+                        
+                        <div class="explanation">
+                            <h4>🎯 Fato Importante:</h4>
+                            <p>Em C, o nome de um vetor É um ponteiro para o primeiro elemento!</p>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numeros[5] = {10, 20, 30, 40, 50};
+    
+    printf("=== RELAÇÃO VETOR-PONTEIRO ===\n");
+    
+    // Estas formas são EQUIVALENTES:
+    printf("numeros[0] = %d\n", numeros[0]);
+    printf("*numeros = %d\n", *numeros);
+    
+    printf("\nnumeros[1] = %d\n", numeros[1]);
+    printf("*(numeros + 1) = %d\n", *(numeros + 1));
+    
+    // Endereços consecutivos
+    printf("\n=== ENDEREÇOS ===\n");
+    for(int i = 0; i < 5; i++) {
+        printf("numeros[%d] está no endereço: %p\n", i, (void*)&numeros[i]);
+        printf("numeros + %d aponta para: %p\n", i, (void*)(numeros + i));
+        printf("Valor: %d\n\n", numeros[i]);
+    }
+    
+    return 0;
+}</div>
+
+                        <div class="visual-demo">
+                            <h4>📍 Aritmética de Ponteiros:</h4>
+                            <div class="memory-boxes">
+                                <div class="memory-box">numeros[0]<br>10<br>Endereço: 1000</div>
+                                <div class="memory-box">numeros[1]<br>20<br>Endereço: 1004</div>
+                                <div class="memory-box">numeros[2]<br>30<br>Endereço: 1008</div>
+                                <div class="memory-box">numeros[3]<br>40<br>Endereço: 1012</div>
+                                <div class="memory-box">numeros[4]<br>50<br>Endereço: 1016</div>
+                            </div>
+                            <p>numeros + 1 = 1004, numeros + 2 = 1008, etc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lição 4: Complexidade -->
+            <div class="lesson" id="complexidade">
+                <div class="lesson-title">📈 Lição 4: Análise de Complexidade</div>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>⏱️ Por que Analisar Complexidade?</h3>
+                        
+                        <div class="explanation">
+                            <h4>🚗 Analogia do Transporte:</h4>
+                            <p><strong>Cenário:</strong> Você precisa ir de A para B</p>
+                            <ul style="margin: 1rem 0; padding-left: 2rem;">
+                                <li><strong>A pé:</strong> Lento, mas funciona para distâncias curtas</li>
+                                <li><strong>Carro:</strong> Rápido para distâncias médias</li>
+                                <li><strong>Avião:</strong> Muito rápido para distâncias longas</li>
+                            </ul>
+                            <p><strong>Algoritmos são iguais:</strong> Alguns são melhores para dados pequenos, outros para dados grandes!</p>
+                        </div>
+
+                        <div class="code-example">
+// EXEMPLO: Buscar um número em um vetor
+
+// ALGORITMO 1: Busca Linear (O(n))
+int busca_linear(int vetor[], int tamanho, int buscar) {
+    for(int i = 0; i < tamanho; i++) {  // Pode percorrer TODO o vetor
+        if(vetor[i] == buscar) {
+            return i;  // Encontrou!
+        }
+    }
+    return -1;  // Não encontrou
+}
+
+// ALGORITMO 2: Busca Binária (O(log n)) - para vetores ordenados
+int busca_binaria(int vetor[], int tamanho, int buscar) {
+    int inicio = 0, fim = tamanho - 1;
+    
+    while(inicio <= fim) {
+        int meio = (inicio + fim) / 2;
+        
+        if(vetor[meio] == buscar) {
+            return meio;  // Encontrou!
+        }
+        else if(vetor[meio] < buscar) {
+            inicio = meio + 1;  // Buscar na metade direita
+        }
+        else {
+            fim = meio - 1;     // Buscar na metade esquerda
+        }
+    }
+    return -1;  // Não encontrou
+}</div>
+
+                        <div class="visual-demo">
+                            <h4>📊 Comparação de Performance:</h4>
+                            <table style="margin: 1rem auto; border-collapse: collapse; width: 100%;">
+                                <tr>
+                                    <th style="border: 2px solid #4f46e5; padding: 1rem; background: #4f46e5; color: white;">Tamanho do Vetor</th>
+                                    <th style="border: 2px solid #4f46e5; padding: 1rem; background: #4f46e5; color: white;">Busca Linear</th>
+                                    <th style="border: 2px solid #4f46e5; padding: 1rem; background: #4f46e5; color: white;">Busca Binária</th>
+                                </tr>
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">100</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 100 comparações</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 7 comparações</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">1.000</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 1.000 comparações</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 10 comparações</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">1.000.000</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 1.000.000 comparações</td>
+                                    <td style="border: 2px solid #4f46e5; padding: 1rem;">até 20 comparações</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>📊 Notação Big O - Explicação Visual</h3>
+                        
+                        <div class="explanation">
+                            <h4>🎯 Big O mede:</h4>
+                            <p>Como o tempo de execução CRESCE quando o tamanho dos dados aumenta</p>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                            <div style="background: #dcfce7; border: 2px solid #16a34a; border-radius: 10px; padding: 1rem;">
+                                <h5>O(1) - Constante 🚀</h5>
+                                <p><strong>Exemplo:</strong> Acessar vetor[0]</p>
+                                <p>Sempre o mesmo tempo, independente do tamanho</p>
+                            </div>
+                            
+                            <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 10px; padding: 1rem;">
+                                <h5>O(log n) - Logarítmica 📈</h5>
+                                <p><strong>Exemplo:</strong> Busca binária</p>
+                                <p>Cresce devagar</p>
+                            </div>
+                            
+                            <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 10px; padding: 1rem;">
+                                <h5>O(n) - Linear 📏</h5>
+                                <p><strong>Exemplo:</strong> Busca linear</p>
+                                <p>Tempo dobra quando dados dobram</p>
+                            </div>
+                            
+                            <div style="background: #fee2e2; border: 2px solid #dc2626; border-radius: 10px; padding: 1rem;">
+                                <h5>O(n²) - Quadrática 💥</h5>
+                                <p><strong>Exemplo:</strong> Bubble sort</p>
+                                <p>Muito lento para dados grandes</p>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+// Função para medir tempo de execução
+void medir_tempo_busca() {
+    int vetor[10000];
+    
+    // Preencher vetor
+    for(int i = 0; i < 10000; i++) {
+        vetor[i] = i;
+    }
+    
+    clock_t inicio, fim;
+    
+    // Testar busca linear
+    inicio = clock();
+    for(int teste = 0; teste < 1000; teste++) {
+        // Buscar o último elemento (pior caso)
+        for(int i = 0; i < 10000; i++) {
+            if(vetor[i] == 9999) break;
+        }
+    }
+    fim = clock();
+    
+    double tempo_linear = ((double)(fim - inicio)) / CLOCKS_PER_SEC;
+    printf("Busca Linear: %.4f segundos\n", tempo_linear);
+    
+    // Testar acesso direto O(1)
+    inicio = clock();
+    for(int teste = 0; teste < 1000; teste++) {
+        int valor = vetor[9999];  // Acesso direto
+    }
+    fim = clock();
+    
+    double tempo_constante = ((double)(fim - inicio)) / CLOCKS_PER_SEC;
+    printf("Acesso Direto: %.4f segundos\n", tempo_constante);
+    
+    printf("Busca linear é %.1fx mais lenta\n", tempo_linear / tempo_constante);
+}
+
+int main() {
+    medir_tempo_busca();
+    return 0;
+}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercícios Finais -->
+            <div class="lesson">
+                <div class="lesson-title">🎯 Exercícios Práticos Finais</div>
+                
+                <div class="exercise">
+                    <h3>🏆 DESAFIO 1: Sistema Completo de Vendas</h3>
+                    <p><strong>Crie um programa que:</strong></p>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Armazene vendas de 4 vendedores durante 7 dias (matriz 4x7)</li>
+                        <li>Calcule o total de vendas por vendedor</li>
+                        <li>Calcule o total de vendas por dia</li>
+                        <li>Encontre o melhor vendedor do mês</li>
+                        <li>Encontre o melhor dia de vendas</li>
+                        <li>Calcule a média geral de vendas</li>
+                    </ol>
+                </div>
+                
+                <div class="exercise">
+                    <h3>🏆 DESAFIO 2: Análise de Performance</h3>
+                    <p><strong>Compare algoritmos:</strong></p>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Implemente busca linear e busca binária</li>
+                        <li>Teste com vetores de 100, 1000 e 10000 elementos</li>
+                        <li>Meça o tempo de execução de cada um</li>
+                        <li>Calcule quantas vezes a busca binária é mais rápida</li>
+                    </ol>
+                </div>
+                
+                <div class="exercise">
+                    <h3>🏆 DESAFIO 3: Manipulação com Ponteiros</h3>
+                    <p><strong>Usando apenas ponteiros:</strong></p>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Percorra um vetor sem usar índices ([i])</li>
+                        <li>Inverta a ordem dos elementos</li>
+                        <li>Encontre o maior e menor elemento</li>
+                        <li>Calcule a média usando aritmética de ponteiros</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegação lateral -->
+    <div class="navigation">
+        <h4 style="margin-bottom: 1rem; color: #4f46e5;">📚 Navegação</h4>
+        <a href="#vetores" class="nav-item">📊 Vetores</a>
+        <a href="#matrizes" class="nav-item">🔢 Matrizes</a>
+        <a href="#ponteiros" class="nav-item">👉 Ponteiros</a>
+        <a href="#complexidade" class="nav-item">📈 Complexidade</a>
+    </div>
+
+    <script>
+        // Smooth scrolling para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos e Complexidade - Simulador C</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-title">🎓 Algoritmos & Complexidade</h1>
+                <ul class="nav-menu">
+                    <li><a href="#vetores" class="nav-link">Vetores</a></li>
+                    <li><a href="#matrizes" class="nav-link">Matrizes</a></li>
+                    <li><a href="#ponteiros" class="nav-link">Ponteiros</a></li>
+                    <li><a href="#complexidade" class="nav-link">Complexidade</a></li>
+                    <li><a href="#simulador" class="nav-link">Simulador</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção Vetores -->
+        <section id="vetores" class="content-section">
+            <div class="container">
+                <h2>📊 Vetores (Arrays)</h2>
+                
+                <!-- Tutorial Passo a Passo -->
+                <div class="tutorial-container">
+                    <div class="tutorial-header">
+                        <h3>🎓 Tutorial Passo a Passo</h3>
+                        <div class="tutorial-controls">
+                            <button onclick="prevStep('vetores')" class="btn-tutorial" id="prevBtn-vetores">← Anterior</button>
+                            <span id="stepCounter-vetores" class="step-counter">Passo 1 de 6</span>
+                            <button onclick="nextStep('vetores')" class="btn-tutorial" id="nextBtn-vetores">Próximo →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-content">
+                        <!-- Passo 1: Conceito -->
+                        <div class="tutorial-step active" data-step="1">
+                            <h4>📖 Passo 1: O que são Vetores?</h4>
+                            <div class="step-content">
+                                <div class="explanation">
+                                    <p><strong>Definição:</strong> Vetores (ou arrays) são estruturas de dados que armazenam múltiplos valores do mesmo tipo em posições consecutivas na memória.</p>
+                                    
+                                    <div class="key-concepts">
+                                        <div class="concept-item">
+                                            <span class="concept-icon">📦</span>
+                                            <div>
+                                                <strong>Container Homogêneo:</strong><br>
+                                                Todos os elementos devem ser do mesmo tipo (int, float, char, etc.)
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="concept-item">
+                                            <span class="concept-icon">📍</span>
+                                            <div>
+                                                <strong>Índices:</strong><br>
+                                                Cada elemento tem uma posição (índice) que começa em 0
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="concept-item">
+                                            <span class="concept-icon">🔢</span>
+                                            <div>
+                                                <strong>Tamanho Fixo:</strong><br>
+                                                O tamanho é definido na declaração e não pode mudar
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="visual-demo">
+                                    <h5>🎯 Analogia: Prédio de Apartamentos</h5>
+                                    <div class="analogy-visual">
+                                        <div class="building">
+                                            <div class="apartment">🏠 Apt 0<br><small>Valor: 10</small></div>
+                                            <div class="apartment">🏠 Apt 1<br><small>Valor: 25</small></div>
+                                            <div class="apartment">🏠 Apt 2<br><small>Valor: 7</small></div>
+                                            <div class="apartment">🏠 Apt 3<br><small>Valor: 33</small></div>
+                                            <div class="apartment">🏠 Apt 4<br><small>Valor: 15</small></div>
+                                        </div>
+                                    </div>
+                                    <p class="analogy-text">
+                                        <strong>Pense assim:</strong> Um vetor é como um prédio onde cada apartamento (índice) 
+                                        pode guardar um valor. Para visitar o apartamento 2, você vai diretamente ao andar 2!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 2: Declaração -->
+                        <div class="tutorial-step" data-step="2">
+                            <h4>📝 Passo 2: Como Declarar Vetores</h4>
+                            <div class="step-content">
+                                <div class="code-explanation">
+                                    <h5>💡 Sintaxe Básica:</h5>
+                                    <div class="syntax-block">
+                                        <code class="syntax-highlight">
+                                            <span class="keyword">tipo</span> 
+                                            <span class="variable">nome</span><span class="operator">[</span><span class="number">tamanho</span><span class="operator">]</span><span class="punctuation">;</span>
+                                        </code>
+                                    </div>
+                                </div>
+                                
+                                <div class="examples-grid">
+                                    <div class="example-card">
+                                        <h6>🔸 Declaração Simples</h6>
+                                        <pre><code class="language-c">int numeros[5];  // Vetor de 5 inteiros
+float notas[10]; // Vetor de 10 números decimais
+char nome[20];   // Vetor de 20 caracteres</code></pre>
+                                        <p class="example-note">⚠️ <strong>Atenção:</strong> Valores iniciais são imprevisíveis (lixo de memória)</p>
+                                    </div>
+                                    
+                                    <div class="example-card">
+                                        <h6>🔸 Declaração com Inicialização</h6>
+                                        <pre><code class="language-c">int numeros[5] = {10, 25, 7, 33, 15};
+float notas[3] = {8.5, 9.0, 7.2};
+char vogais[5] = {'a', 'e', 'i', 'o', 'u'};</code></pre>
+                                        <p class="example-note">✅ <strong>Melhor prática:</strong> Sempre inicialize os valores</p>
+                                    </div>
+                                    
+                                    <div class="example-card">
+                                        <h6>🔸 Declaração Automática</h6>
+                                        <pre><code class="language-c">int numeros[] = {1, 2, 3, 4, 5};
+// O compilador calcula: tamanho = 5</code></pre>
+                                        <p class="example-note">🤖 <strong>Inteligente:</strong> Tamanho calculado automaticamente</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 3: Visualização -->
+                        <div class="tutorial-step" data-step="3">
+                            <h4>👁️ Passo 3: Visualização na Memória</h4>
+                            <div class="step-content">
+                                <div class="memory-visualization">
+                                    <h5>🧠 Como o Computador Vê o Vetor:</h5>
+                                    
+                                    <div class="memory-layout">
+                                        <div class="memory-declaration">
+                                            <code>int numeros[5] = {10, 25, 7, 33, 15};</code>
+                                        </div>
+                                        
+                                        <div class="memory-diagram">
+                                            <div class="memory-row">
+                                                <span class="memory-label">Endereços:</span>
+                                                <div class="memory-address">1000</div>
+                                                <div class="memory-address">1004</div>
+                                                <div class="memory-address">1008</div>
+                                                <div class="memory-address">1012</div>
+                                                <div class="memory-address">1016</div>
+                                            </div>
+                                            
+                                            <div class="memory-row">
+                                                <span class="memory-label">Índices:</span>
+                                                <div class="memory-index">0</div>
+                                                <div class="memory-index">1</div>
+                                                <div class="memory-index">2</div>
+                                                <div class="memory-index">3</div>
+                                                <div class="memory-index">4</div>
+                                            </div>
+                                            
+                                            <div class="memory-row">
+                                                <span class="memory-label">Valores:</span>
+                                                <div class="memory-value">10</div>
+                                                <div class="memory-value">25</div>
+                                                <div class="memory-value">7</div>
+                                                <div class="memory-value">33</div>
+                                                <div class="memory-value">15</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="memory-facts">
+                                        <div class="fact-item">
+                                            <span class="fact-icon">📏</span>
+                                            <div>
+                                                <strong>Espaçamento:</strong> Cada int ocupa 4 bytes, por isso os endereços pulam de 4 em 4
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="fact-item">
+                                            <span class="fact-icon">⚡</span>
+                                            <div>
+                                                <strong>Acesso Direto:</strong> Para acessar numeros[2], o computador calcula: endereço_base + (2 × 4) = 1008
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 4: Acesso -->
+                        <div class="tutorial-step" data-step="4">
+                            <h4>🔍 Passo 4: Acessando Elementos</h4>
+                            <div class="step-content">
+                                <div class="access-demo">
+                                    <h5>📋 Como Acessar e Modificar Elementos:</h5>
+                                    
+                                    <div class="interactive-array" id="demo-array">
+                                        <div class="array-header">
+                                            <span>Clique nos elementos para ver como acessá-los:</span>
+                                        </div>
+                                        <div class="array-container">
+                                            <div class="array-element-demo" data-index="0" onclick="showAccess(0)">
+                                                <div class="element-index">0</div>
+                                                <div class="element-value">10</div>
+                                            </div>
+                                            <div class="array-element-demo" data-index="1" onclick="showAccess(1)">
+                                                <div class="element-index">1</div>
+                                                <div class="element-value">25</div>
+                                            </div>
+                                            <div class="array-element-demo" data-index="2" onclick="showAccess(2)">
+                                                <div class="element-index">2</div>
+                                                <div class="element-value">7</div>
+                                            </div>
+                                            <div class="array-element-demo" data-index="3" onclick="showAccess(3)">
+                                                <div class="element-index">3</div>
+                                                <div class="element-value">33</div>
+                                            </div>
+                                            <div class="array-element-demo" data-index="4" onclick="showAccess(4)">
+                                                <div class="element-index">4</div>
+                                                <div class="element-value">15</div>
+                                            </div>
+                                        </div>
+                                        <div class="access-info" id="access-info">
+                                            <p>👆 Clique em qualquer elemento acima para ver como acessá-lo!</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="access-rules">
+                                        <h6>📌 Regras Importantes:</h6>
+                                        <div class="rules-grid">
+                                            <div class="rule-item">
+                                                <span class="rule-icon">✅</span>
+                                                <div>
+                                                    <strong>Índices válidos:</strong><br>
+                                                    De 0 até (tamanho - 1)
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="rule-item">
+                                                <span class="rule-icon">❌</span>
+                                                <div>
+                                                    <strong>Erro comum:</strong><br>
+                                                    numeros[5] é inválido (só vai até 4)
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="rule-item">
+                                                <span class="rule-icon">⚡</span>
+                                                <div>
+                                                    <strong>Tempo de acesso:</strong><br>
+                                                    O(1) - sempre o mesmo tempo
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 5: Operações -->
+                        <div class="tutorial-step" data-step="5">
+                            <h4>⚙️ Passo 5: Operações Básicas</h4>
+                            <div class="step-content">
+                                <div class="operations-demo">
+                                    <h5>🛠️ Principais Operações com Vetores:</h5>
+                                    
+                                    <div class="operation-tabs">
+                                        <button class="tab-button active" onclick="showOperation('percorrer')">🔄 Percorrer</button>
+                                        <button class="tab-button" onclick="showOperation('buscar')">🔍 Buscar</button>
+                                        <button class="tab-button" onclick="showOperation('somar')">➕ Somar</button>
+                                        <button class="tab-button" onclick="showOperation('maior')">📊 Maior/Menor</button>
+                                    </div>
+                                    
+                                    <div class="operation-content">
+                                        <!-- Percorrer -->
+                                        <div class="operation-panel active" id="operation-percorrer">
+                                            <h6>🔄 Percorrer Todos os Elementos</h6>
+                                            <div class="operation-explanation">
+                                                <div class="code-block">
+                                                    <pre><code class="language-c">// Percorrer e exibir todos os elementos
+for(int i = 0; i < 5; i++) {
+    printf("numeros[%d] = %d\n", i, numeros[i]);
+}</code></pre>
+                                                </div>
+                                                
+                                                <div class="step-by-step">
+                                                    <h6>🔍 Passo a passo:</h6>
+                                                    <ol>
+                                                        <li><strong>i = 0:</strong> Acessa numeros[0] → 10</li>
+                                                        <li><strong>i = 1:</strong> Acessa numeros[1] → 25</li>
+                                                        <li><strong>i = 2:</strong> Acessa numeros[2] → 7</li>
+                                                        <li><strong>i = 3:</strong> Acessa numeros[3] → 33</li>
+                                                        <li><strong>i = 4:</strong> Acessa numeros[4] → 15</li>
+                                                        <li><strong>i = 5:</strong> Para! (i < 5 é falso)</li>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Buscar -->
+                                        <div class="operation-panel" id="operation-buscar">
+                                            <h6>🔍 Buscar um Elemento</h6>
+                                            <div class="operation-explanation">
+                                                <div class="code-block">
+                                                    <pre><code class="language-c">// Buscar o valor 33
+int buscar = 33;
+int encontrado = -1;
+
+for(int i = 0; i < 5; i++) {
+    if(numeros[i] == buscar) {
+        encontrado = i;
+        break;  // Para quando encontra
+    }
+}</code></pre>
+                                                </div>
+                                                
+                                                <div class="search-visualization">
+                                                    <h6>🎯 Simulação da busca por 33:</h6>
+                                                    <div class="search-steps">
+                                                        <div class="search-step">
+                                                            <span class="step-number">1</span>
+                                                            <span class="comparison">10 == 33?</span>
+                                                            <span class="result">❌ Não</span>
+                                                        </div>
+                                                        <div class="search-step">
+                                                            <span class="step-number">2</span>
+                                                            <span class="comparison">25 == 33?</span>
+                                                            <span class="result">❌ Não</span>
+                                                        </div>
+                                                        <div class="search-step">
+                                                            <span class="step-number">3</span>
+                                                            <span class="comparison">7 == 33?</span>
+                                                            <span class="result">❌ Não</span>
+                                                        </div>
+                                                        <div class="search-step found">
+                                                            <span class="step-number">4</span>
+                                                            <span class="comparison">33 == 33?</span>
+                                                            <span class="result">✅ Encontrou!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Outras operações... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 6: Exercício Prático -->
+                        <div class="tutorial-step" data-step="6">
+                            <h4>🎯 Passo 6: Exercício Prático</h4>
+                            <div class="step-content">
+                                <div class="practice-exercise">
+                                    <h5>💪 Agora é sua vez!</h5>
+                                    <div class="exercise-challenge">
+                                        <div class="challenge-description">
+                                            <h6>🎮 Desafio: Analisador de Notas</h6>
+                                            <p><strong>Objetivo:</strong> Criar um programa que analise as notas de uma turma.</p>
+                                            
+                                            <div class="requirements">
+                                                <h6>📋 Requisitos:</h6>
+                                                <ul>
+                                                    <li>✅ Criar um vetor com 5 notas: {8.5, 7.0, 9.5, 6.0, 8.0}</li>
+                                                    <li>✅ Calcular a média da turma</li>
+                                                    <li>✅ Encontrar a maior e menor nota</li>
+                                                    <li>✅ Contar quantos alunos foram aprovados (nota ≥ 7.0)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <button onclick="loadNotasExercise()" class="btn-challenge">
+                                            🚀 Carregar no Simulador
+                                        </button>
+                                        
+                                        <div class="exercise-tips">
+                                            <h6>💡 Dicas:</h6>
+                                            <div class="tips-grid">
+                                                <div class="tip-item">
+                                                    <span class="tip-icon">📊</span>
+                                                    <span>Use um loop para somar todas as notas</span>
+                                                </div>
+                                                <div class="tip-item">
+                                                    <span class="tip-icon">🔍</span>
+                                                    <span>Compare elemento por elemento para encontrar maior/menor</span>
+                                                </div>
+                                                <div class="tip-item">
+                                                    <span class="tip-icon">📈</span>
+                                                    <span>Use um contador para alunos aprovados</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>Exemplos de Código:</h4>
+                    <pre><code class="language-c">// Declaração e inicialização
+int numeros[5] = {10, 25, 7, 33, 15};
+int vazio[10];  // Vetor não inicializado
+
+// Acesso aos elementos
+printf("Primeiro: %d\n", numeros[0]);  // 10
+printf("Último: %d\n", numeros[4]);    // 15
+
+// Modificação
+numeros[2] = 99;  // Altera o terceiro elemento
+
+// Iteração
+for(int i = 0; i < 5; i++) {
+    printf("numeros[%d] = %d\n", i, numeros[i]);
+}</code></pre>
+                </div>
+
+                <div class="complexity-box">
+                    <h4>⚡ Complexidade:</h4>
+                    <ul>
+                        <li><strong>Acesso:</strong> O(1) - Tempo constante</li>
+                        <li><strong>Busca:</strong> O(n) - Tempo linear</li>
+                        <li><strong>Inserção no final:</strong> O(1)</li>
+                        <li><strong>Inserção no meio:</strong> O(n)</li>
+                    </ul>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Exercício Prático:</h4>
+                    <p>Tente no simulador: Crie um vetor, encontre o maior elemento e calcule a média.</p>
+                    <button onclick="loadVetorExercise()" class="btn-exercise">Carregar Exercício</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Matrizes -->
+        <section id="matrizes" class="content-section">
+            <div class="container">
+                <h2>🔢 Matrizes (Arrays 2D)</h2>
+                
+                <div class="theory-block">
+                    <h3>O que são Matrizes?</h3>
+                    <p>Matrizes são arrays bidimensionais - vetores de vetores. Úteis para representar dados tabulares, imagens, jogos como tic-tac-toe, etc.</p>
+                    
+                    <div class="visual-demo">
+                        <h4>Representação Visual:</h4>
+                        <div class="matrix-visual">
+                            <table class="matrix-table">
+                                <tr>
+                                    <td class="matrix-cell">1</td>
+                                    <td class="matrix-cell">2</td>
+                                    <td class="matrix-cell">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="matrix-cell">4</td>
+                                    <td class="matrix-cell">5</td>
+                                    <td class="matrix-cell">6</td>
+                                </tr>
+                                <tr>
+                                    <td class="matrix-cell">7</td>
+                                    <td class="matrix-cell">8</td>
+                                    <td class="matrix-cell">9</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p class="array-label">int matriz[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};</p>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>Exemplos de Código:</h4>
+                    <pre><code class="language-c">// Declaração e inicialização
+int matriz[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Acesso aos elementos
+printf("Elemento [1][2]: %d\n", matriz[1][2]);  // 6
+
+// Percorrer a matriz
+for(int i = 0; i < 3; i++) {
+    for(int j = 0; j < 3; j++) {
+        printf("%d ", matriz[i][j]);
+    }
+    printf("\n");
+}
+
+// Soma da diagonal principal
+int soma = 0;
+for(int i = 0; i < 3; i++) {
+    soma += matriz[i][i];
+}</code></pre>
+                </div>
+
+                <div class="complexity-box">
+                    <h4>⚡ Complexidade:</h4>
+                    <ul>
+                        <li><strong>Acesso:</strong> O(1) - Tempo constante</li>
+                        <li><strong>Busca:</strong> O(n×m) - Percorrer toda matriz</li>
+                        <li><strong>Percorrer:</strong> O(n×m) - Todos elementos</li>
+                    </ul>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Exercício Prático:</h4>
+                    <p>Tente no simulador: Crie uma matriz 3x3 e calcule a soma de cada linha.</p>
+                    <button onclick="loadMatrizExercise()" class="btn-exercise">Carregar Exercício</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Ponteiros -->
+        <section id="ponteiros" class="content-section">
+            <div class="container">
+                <h2>👉 Ponteiros</h2>
+                
+                <div class="theory-block">
+                    <h3>O que são Ponteiros?</h3>
+                    <p>Ponteiros são variáveis que armazenam endereços de memória de outras variáveis. Eles permitem acesso indireto à dados e são fundamentais para alocação dinâmica.</p>
+                    
+                    <div class="visual-demo">
+                        <h4>Representação Visual:</h4>
+                        <div class="pointer-visual">
+                            <div class="memory-block">
+                                <div class="variable">
+                                    <span class="var-name">int x = 42;</span>
+                                    <span class="var-address">Endereço: 0x1000</span>
+                                    <span class="var-value">Valor: 42</span>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="pointer">
+                                    <span class="ptr-name">int *ptr = &x;</span>
+                                    <span class="ptr-address">Endereço: 0x2000</span>
+                                    <span class="ptr-value">Valor: 0x1000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>Exemplos de Código:</h4>
+                    <pre><code class="language-c">// Declaração de ponteiros
+int x = 42;
+int *ptr = &x;  // ptr aponta para x
+
+// Operadores fundamentais
+printf("Valor de x: %d\n", x);        // 42
+printf("Endereço de x: %p\n", &x);    // ex: 0x7fff5fbff6ac
+printf("Valor do ponteiro: %p\n", ptr); // mesmo endereço
+printf("Valor apontado: %d\n", *ptr);  // 42
+
+// Modificação através do ponteiro
+*ptr = 100;
+printf("Novo valor de x: %d\n", x);   // 100
+
+// Ponteiros e arrays
+int arr[5] = {1, 2, 3, 4, 5};
+int *p = arr;  // p aponta para o primeiro elemento
+
+for(int i = 0; i < 5; i++) {
+    printf("%d ", *(p + i));  // Aritmética de ponteiros
+}</code></pre>
+                </div>
+
+                <div class="complexity-box">
+                    <h4>⚡ Vantagens dos Ponteiros:</h4>
+                    <ul>
+                        <li><strong>Eficiência:</strong> Evita cópias desnecessárias</li>
+                        <li><strong>Flexibilidade:</strong> Alocação dinâmica de memória</li>
+                        <li><strong>Estruturas:</strong> Listas ligadas, árvores, etc.</li>
+                        <li><strong>Funções:</strong> Passagem por referência</li>
+                    </ul>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Exercício Prático:</h4>
+                    <p>Tente no simulador: Use ponteiros para trocar os valores de duas variáveis.</p>
+                    <button onclick="loadPonteiroExercise()" class="btn-exercise">Carregar Exercício</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Complexidade -->
+        <section id="complexidade" class="content-section">
+            <div class="container">
+                <h2>📈 Análise de Complexidade</h2>
+                
+                <div class="theory-block">
+                    <h3>O que é Complexidade de Algoritmos?</h3>
+                    <p>A análise de complexidade mede como o tempo de execução e uso de memória de um algoritmo cresce conforme o tamanho da entrada aumenta.</p>
+                </div>
+
+                <div class="complexity-chart">
+                    <h4>Principais Complexidades:</h4>
+                    <div class="complexity-grid">
+                        <div class="complexity-item excellent">
+                            <h5>O(1) - Constante</h5>
+                            <p>Acesso a array, operações matemáticas simples</p>
+                        </div>
+                        <div class="complexity-item good">
+                            <h5>O(log n) - Logarítmica</h5>
+                            <p>Busca binária, árvores balanceadas</p>
+                        </div>
+                        <div class="complexity-item fair">
+                            <h5>O(n) - Linear</h5>
+                            <p>Busca linear, percorrer array</p>
+                        </div>
+                        <div class="complexity-item bad">
+                            <h5>O(n log n) - Log-linear</h5>
+                            <p>Merge sort, heap sort</p>
+                        </div>
+                        <div class="complexity-item poor">
+                            <h5>O(n²) - Quadrática</h5>
+                            <p>Bubble sort, nested loops</p>
+                        </div>
+                        <div class="complexity-item terrible">
+                            <h5>O(2ⁿ) - Exponencial</h5>
+                            <p>Problemas recursivos não otimizados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>Exemplos com Análise:</h4>
+                    <pre><code class="language-c">// O(1) - Tempo constante
+int getFirst(int arr[]) {
+    return arr[0];  // Sempre a mesma operação
+}
+
+// O(n) - Tempo linear
+int findMax(int arr[], int n) {
+    int max = arr[0];
+    for(int i = 1; i < n; i++) {  // n operações
+        if(arr[i] > max) max = arr[i];
+    }
+    return max;
+}
+
+// O(n²) - Tempo quadrático
+void bubbleSort(int arr[], int n) {
+    for(int i = 0; i < n-1; i++) {     // n operações
+        for(int j = 0; j < n-i-1; j++) { // n operações aninhadas
+            if(arr[j] > arr[j+1]) {
+                // swap
+            }
+        }
+    }
+}
+
+// O(log n) - Busca binária
+int binarySearch(int arr[], int n, int target) {
+    int left = 0, right = n-1;
+    while(left <= right) {
+        int mid = (left + right) / 2;
+        if(arr[mid] == target) return mid;
+        else if(arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}</code></pre>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Exercício Prático:</h4>
+                    <p>Compare os tempos de execução de busca linear vs busca binária no simulador.</p>
+                    <button onclick="loadComplexidadeExercise()" class="btn-exercise">Carregar Exercício</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulador de Código -->
+        <section id="simulador" class="content-section">
+            <div class="container">
+                <h2>💻 Simulador de Código C</h2>
+                
+                <div class="simulator-container">
+                    <div class="simulator-header">
+                        <h3>Editor de Código</h3>
+                        <div class="simulator-controls">
+                            <button onclick="runCode()" class="btn-run">▶️ Executar</button>
+                            <button onclick="clearCode()" class="btn-clear">🗑️ Limpar</button>
+                            <button onclick="loadExample()" class="btn-example">📋 Exemplo</button>
+                            <select id="exampleSelect" onchange="loadSelectedExample()">
+                                <option value="">Escolha um exemplo...</option>
+                                <option value="vetor-basico">Vetor Básico</option>
+                                <option value="matriz-soma">Matriz - Soma</option>
+                                <option value="ponteiro-swap">Ponteiro - Swap</option>
+                                <option value="busca-linear">Busca Linear</option>
+                                <option value="busca-binaria">Busca Binária</option>
+                                <option value="bubble-sort">Bubble Sort</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="simulator-body">
+                        <div class="code-editor">
+                            <textarea id="codeEditor" placeholder="Digite seu código C aqui...">
+#include <stdio.h>
+
+int main() {
+    printf("Olá, mundo!\n");
+    return 0;
+}</textarea>
+                        </div>
+                        
+                        <div class="output-panel">
+                            <h4>Saída do Programa:</h4>
+                            <div id="output" class="output-content">
+                                <p class="output-placeholder">A saída aparecerá aqui...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="simulator-footer">
+                        <div class="execution-info">
+                            <span id="executionTime">Tempo: --</span>
+                            <span id="memoryUsage">Memória: --</span>
+                            <span id="complexity">Complexidade: --</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simulator-help">
+                    <h4>💡 Dicas de Uso:</h4>
+                    <ul>
+                        <li>Este é um simulador educacional - algumas funcionalidades podem ser limitadas</li>
+                        <li>Use <code>printf()</code> para exibir resultados</li>
+                        <li>Teste diferentes exemplos para entender os conceitos</li>
+                        <li>Experimente modificar os códigos de exemplo</li>
+                        <li>Observe a análise de complexidade fornecida</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Algoritmos e Complexidade - Material Educacional</p>
+            <p>Desenvolvido com ❤️ para estudantes de Ciência da Computação</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

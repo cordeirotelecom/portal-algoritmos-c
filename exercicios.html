@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios Práticos - Algoritmos em C</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #f8fafc;">
+    <div class="container" style="padding: 2rem 0;">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="color: #4f46e5; font-size: 2.5rem; margin-bottom: 1rem;">
+                🎯 Exercícios Práticos
+            </h1>
+            <p style="color: #64748b; font-size: 1.2rem;">
+                Lista de exercícios progressivos para praticar algoritmos em C
+            </p>
+            <a href="index.html" style="display: inline-block; background: #4f46e5; color: white; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; margin-top: 1rem;">
+                ← Voltar ao Simulador
+            </a>
+        </header>
+
+        <!-- Exercícios de Vetores -->
+        <section class="exercise-section">
+            <h2 style="color: #059669; border-bottom: 3px solid #059669; padding-bottom: 0.5rem;">
+                📊 Exercícios - Vetores
+            </h2>
+
+            <div class="exercise-card">
+                <h3>🟢 Nível Básico</h3>
+                
+                <div class="exercise-item">
+                    <h4>1. Preenchimento e Exibição</h4>
+                    <p><strong>Objetivo:</strong> Criar um programa que leia 5 números inteiros do usuário e os exiba na ordem inversa.</p>
+                    <details>
+                        <summary>💡 Dica</summary>
+                        <p>Use um loop for para ler os números e outro para exibi-los de trás para frente.</p>
+                    </details>
+                    <details>
+                        <summary>🔧 Solução</summary>
+                        <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int numeros[5];
+    
+    printf("Digite 5 números:\n");
+    for(int i = 0; i < 5; i++) {
+        printf("Número %d: ", i+1);
+        scanf("%d", &numeros[i]);
+    }
+    
+    printf("\nNúmeros na ordem inversa:\n");
+    for(int i = 4; i >= 0; i--) {
+        printf("%d ", numeros[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>2. Contador de Elementos</h4>
+                    <p><strong>Objetivo:</strong> Contar quantos números pares e ímpares existem em um vetor de 10 elementos.</p>
+                    <details>
+                        <summary>💡 Dica</summary>
+                        <p>Use o operador módulo (%) para verificar se um número é par ou ímpar.</p>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>3. Maior e Menor</h4>
+                    <p><strong>Objetivo:</strong> Encontrar o maior e menor elemento de um vetor, junto com suas posições.</p>
+                    <details>
+                        <summary>💡 Dica</summary>
+                        <p>Inicialize maior e menor com o primeiro elemento do vetor.</p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>🟡 Nível Intermediário</h3>
+                
+                <div class="exercise-item">
+                    <h4>4. Busca de Elemento</h4>
+                    <p><strong>Objetivo:</strong> Implementar busca linear que retorne todas as posições onde um elemento aparece.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>5. Ordenação Simples</h4>
+                    <p><strong>Objetivo:</strong> Implementar Selection Sort para ordenar um vetor de inteiros.</p>
+                    <details>
+                        <summary>🔧 Algoritmo Selection Sort</summary>
+                        <pre><code>void selectionSort(int arr[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        int min_idx = i;
+        for(int j = i+1; j < n; j++) {
+            if(arr[j] < arr[min_idx])
+                min_idx = j;
+        }
+        // Trocar elementos
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
+    }
+}</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>6. Rotação de Vetor</h4>
+                    <p><strong>Objetivo:</strong> Rotacionar um vetor k posições para a direita.</p>
+                    <p><strong>Exemplo:</strong> [1,2,3,4,5] rotacionado 2 posições → [4,5,1,2,3]</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>🔴 Nível Avançado</h3>
+                
+                <div class="exercise-item">
+                    <h4>7. Merge de Vetores Ordenados</h4>
+                    <p><strong>Objetivo:</strong> Intercalar dois vetores ordenados em um terceiro vetor também ordenado.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>8. Remoção de Duplicatas</h4>
+                    <p><strong>Objetivo:</strong> Remover elementos duplicados de um vetor ordenado.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios de Matrizes -->
+        <section class="exercise-section">
+            <h2 style="color: #dc2626; border-bottom: 3px solid #dc2626; padding-bottom: 0.5rem;">
+                🔢 Exercícios - Matrizes
+            </h2>
+
+            <div class="exercise-card">
+                <h3>🟢 Nível Básico</h3>
+                
+                <div class="exercise-item">
+                    <h4>9. Soma de Matriz</h4>
+                    <p><strong>Objetivo:</strong> Somar todos os elementos de uma matriz 3x3.</p>
+                    <details>
+                        <summary>🔧 Solução</summary>
+                        <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int matriz[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
+    int soma = 0;
+    
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            soma += matriz[i][j];
+        }
+    }
+    
+    printf("Soma total: %d\n", soma);
+    return 0;
+}</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>10. Diagonal Principal</h4>
+                    <p><strong>Objetivo:</strong> Calcular a soma da diagonal principal e diagonal secundária de uma matriz.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>11. Transposição</h4>
+                    <p><strong>Objetivo:</strong> Criar a matriz transposta de uma matriz 3x3.</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>🟡 Nível Intermediário</h3>
+                
+                <div class="exercise-item">
+                    <h4>12. Multiplicação de Matrizes</h4>
+                    <p><strong>Objetivo:</strong> Multiplicar duas matrizes 2x2.</p>
+                    <details>
+                        <summary>💡 Fórmula</summary>
+                        <p>C[i][j] = Σ(A[i][k] * B[k][j]) para k de 0 a n-1</p>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>13. Busca em Matriz</h4>
+                    <p><strong>Objetivo:</strong> Encontrar um elemento em uma matriz e retornar sua posição (linha, coluna).</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>🔴 Nível Avançado</h3>
+                
+                <div class="exercise-item">
+                    <h4>14. Jogo da Velha</h4>
+                    <p><strong>Objetivo:</strong> Implementar a lógica de verificação de vitória em um jogo da velha usando matriz 3x3.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>15. Rotação de Matriz</h4>
+                    <p><strong>Objetivo:</strong> Rotacionar uma matriz 3x3 em 90 graus no sentido horário.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios de Ponteiros -->
+        <section class="exercise-section">
+            <h2 style="color: #7c3aed; border-bottom: 3px solid #7c3aed; padding-bottom: 0.5rem;">
+                👉 Exercícios - Ponteiros
+            </h2>
+
+            <div class="exercise-card">
+                <h3>🟢 Nível Básico</h3>
+                
+                <div class="exercise-item">
+                    <h4>16. Troca de Valores</h4>
+                    <p><strong>Objetivo:</strong> Implementar função que troca valores de duas variáveis usando ponteiros.</p>
+                    <details>
+                        <summary>🔧 Solução</summary>
+                        <pre><code>void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+    printf("Antes: x=%d, y=%d\n", x, y);
+    swap(&x, &y);
+    printf("Depois: x=%d, y=%d\n", x, y);
+    return 0;
+}</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>17. Maior por Referência</h4>
+                    <p><strong>Objetivo:</strong> Função que encontra o maior elemento de um vetor usando ponteiros.</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>🟡 Nível Intermediário</h3>
+                
+                <div class="exercise-item">
+                    <h4>18. Ordenação com Ponteiros</h4>
+                    <p><strong>Objetivo:</strong> Implementar bubble sort usando apenas aritmética de ponteiros.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>19. String Reversa</h4>
+                    <p><strong>Objetivo:</strong> Inverter uma string usando ponteiros (sem usar strlen).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercícios de Complexidade -->
+        <section class="exercise-section">
+            <h2 style="color: #ea580c; border-bottom: 3px solid #ea580c; padding-bottom: 0.5rem;">
+                📈 Exercícios - Análise de Complexidade
+            </h2>
+
+            <div class="exercise-card">
+                <h3>🟡 Análise Prática</h3>
+                
+                <div class="exercise-item">
+                    <h4>20. Comparação de Algoritmos</h4>
+                    <p><strong>Objetivo:</strong> Implementar e comparar o tempo de execução de:</p>
+                    <ul>
+                        <li>Busca Linear vs Busca Binária</li>
+                        <li>Bubble Sort vs Selection Sort</li>
+                    </ul>
+                    <details>
+                        <summary>💡 Como medir tempo</summary>
+                        <pre><code>#include &lt;time.h&gt;
+
+clock_t start = clock();
+// ... código a medir ...
+clock_t end = clock();
+double tempo = ((double)(end - start)) / CLOCKS_PER_SEC;</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>21. Análise de Loops</h4>
+                    <p><strong>Objetivo:</strong> Determinar a complexidade dos seguintes códigos:</p>
+                    <details>
+                        <summary>📝 Código A</summary>
+                        <pre><code>for(int i = 0; i < n; i++) {
+    for(int j = i; j < n; j++) {
+        printf("%d %d\n", i, j);
+    }
+}</code></pre>
+                        <p><strong>Resposta:</strong> O(n²) - mesmo com j começando em i, ainda é quadrático</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desafios Especiais -->
+        <section class="exercise-section">
+            <h2 style="color: #059669; border-bottom: 3px solid #059669; padding-bottom: 0.5rem;">
+                🏆 Desafios Especiais
+            </h2>
+
+            <div class="exercise-card">
+                <h3>🔥 Para os Corajosos</h3>
+                
+                <div class="exercise-item">
+                    <h4>22. Sudoku Validator</h4>
+                    <p><strong>Objetivo:</strong> Verificar se uma matriz 9x9 representa um Sudoku válido.</p>
+                    <p><strong>Regras:</strong> Cada linha, coluna e quadrante 3x3 deve conter números de 1-9 sem repetição.</p>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>23. Algoritmo de Ordenação Híbrido</h4>
+                    <p><strong>Objetivo:</strong> Implementar um algoritmo que use:</p>
+                    <ul>
+                        <li>Insertion Sort para arrays pequenos (n < 10)</li>
+                        <li>Quick Sort para arrays maiores</li>
+                    </ul>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>24. Sistema de Gerenciamento</h4>
+                    <p><strong>Objetivo:</strong> Criar um sistema para gerenciar notas de alunos usando:</p>
+                    <ul>
+                        <li>Struct para representar aluno</li>
+                        <li>Array de structs</li>
+                        <li>Ponteiros para funções de ordenação</li>
+                        <li>Diferentes critérios de ordenação (nome, nota, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 15px;">
+            <h3 style="color: #4f46e5; margin-bottom: 1rem;">🎯 Dicas para Resolver os Exercícios</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; text-align: left;">
+                <div>
+                    <h4>📝 Planejamento</h4>
+                    <ul>
+                        <li>Leia o problema completamente</li>
+                        <li>Identifique entrada e saída</li>
+                        <li>Desenhe o algoritmo antes de programar</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>🔧 Implementação</h4>
+                    <ul>
+                        <li>Comece com casos simples</li>
+                        <li>Teste com dados pequenos</li>
+                        <li>Use printf para debug</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>🧪 Testes</h4>
+                    <ul>
+                        <li>Teste casos extremos</li>
+                        <li>Verifique complexidade</li>
+                        <li>Compare com soluções conhecidas</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; color: #64748b;">
+                💡 <strong>Lembre-se:</strong> A prática leva à perfeição! Comece pelos exercícios básicos e vá progredindo gradualmente.
+            </p>
+        </footer>
+    </div>
+
+    <style>
+        .exercise-section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .exercise-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .exercise-card h3 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exercise-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .exercise-item h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        details {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #4f46e5;
+            padding: 0.5rem;
+        }
+
+        summary:hover {
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 4px;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</body>
+</html>

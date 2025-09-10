@@ -1,0 +1,22 @@
+# Arquivos para não versionar
+*.exe
+*.o
+*.obj
+codeblocks-mingw-setup.exe
+mingw64.7z
+teste.exe
+vetores_*.exe
+
+# Arquivos do Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos temporários
+*~
+*.tmp
+*.temp
+
+# Pastas de sistema
+.DS_Store
+__pycache__/
+.vscode/settings.json

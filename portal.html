@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Educacional - Algoritmos e Complexidade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .portal-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .portal-header {
+            margin-bottom: 3rem;
+        }
+
+        .portal-title {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .portal-subtitle {
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .portal-description {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-color: #4f46e5;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            list-style: none;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .card-features li {
+            color: #475569;
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .card-button.secondary {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+
+        .card-button.tertiary {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+        .portal-stats {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            display: block;
+        }
+
+        .stat-label {
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        .portal-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .portal-title {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portal-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+        }
+
+        .navigation-hint {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .quick-access {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            background: #4f46e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <div class="portal-header">
+            <h1 class="portal-title">🎓 Portal Educacional</h1>
+            <h2 class="portal-subtitle">Algoritmos e Complexidade em C</h2>
+            
+            <div class="portal-description">
+                <h3 style="color: #4f46e5; margin-bottom: 1rem;">🚀 Bem-vindo à Plataforma Mais Completa para Aprender Programação!</h3>
+                <p>
+                    Esta plataforma foi desenvolvida especialmente para estudantes que querem dominar 
+                    <strong>algoritmos, estruturas de dados e análise de complexidade</strong> em linguagem C. 
+                    Com uma abordagem didática única, você terá acesso a:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>✨ <strong>Explicações passo a passo</strong> com exemplos visuais</li>
+                    <li>💻 <strong>Simulador de código</strong> para testar na prática</li>
+                    <li>🎯 <strong>Exercícios progressivos</strong> do básico ao avançado</li>
+                    <li>📚 <strong>Guia didático completo</strong> com cronograma de estudos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-hint">
+            <strong>💡 Como usar esta plataforma:</strong>
+            <ol style="margin: 1rem 0; padding-left: 2rem;">
+                <li><strong>Iniciantes:</strong> Comece pelo Guia Didático para entender a metodologia</li>
+                <li><strong>Praticantes:</strong> Vá direto para o Simulador Interativo</li>
+                <li><strong>Experientes:</strong> Teste seus conhecimentos nos Exercícios Avançados</li>
+            </ol>
+        </div>
+
+        <div class="quick-access">
+            <a href="tutorial-didatico.html" class="quick-btn">🎓 Tutorial Super Didático</a>
+            <a href="guia-didatico.html" class="quick-btn">📖 Guia de Estudos</a>
+            <a href="index.html#simulador" class="quick-btn">💻 Ir para o Simulador</a>
+            <a href="exercicios.html" class="quick-btn">🎯 Ver Exercícios</a>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Card 0: Tutorial Super Didático -->
+            <div class="portal-card">
+                <span class="card-icon">🎓</span>
+                <h3 class="card-title">Tutorial Super Didático</h3>
+                <p class="card-description">
+                    Explicações PASSO A PASSO extremamente detalhadas com exemplos visuais, casos práticos e exercícios progressivos.
+                </p>
+                <ul class="card-features">
+                    <li>Explanações visuais passo a passo</li>
+                    <li>Casos práticos do mundo real</li>
+                    <li>Exercícios progressivos</li>
+                    <li>Exemplos de código comentados</li>
+                    <li>Analogias fáceis de entender</li>
+                </ul>
+                <a href="tutorial-didatico.html" class="card-button">🎓 Começar Tutorial</a>
+            </div>
+
+            <!-- Card 1: Simulador Interativo -->
+            <div class="portal-card">
+                <span class="card-icon">💻</span>
+                <h3 class="card-title">Simulador Interativo</h3>
+                <p class="card-description">
+                    Plataforma web completa com editor de código C, execução simulada e análise automática de complexidade.
+                </p>
+                <ul class="card-features">
+                    <li>Editor com syntax highlighting</li>
+                    <li>6 exemplos pré-programados</li>
+                    <li>Análise de complexidade automática</li>
+                    <li>Visualizações interativas</li>
+                    <li>Tutorial passo a passo integrado</li>
+                </ul>
+                <a href="index.html" class="card-button">🚀 Abrir Simulador</a>
+            </div>
+
+            <!-- Card 2: Guia Didático -->
+            <div class="portal-card">
+                <span class="card-icon">📚</span>
+                <h3 class="card-title">Guia Didático Completo</h3>
+                <p class="card-description">
+                    Metodologia estruturada para aprender algoritmos de forma efetiva, com cronograma semanal detalhado.
+                </p>
+                <ul class="card-features">
+                    <li>Roteiro de 6 semanas</li>
+                    <li>Explicações passo a passo</li>
+                    <li>Metodologia de estudos</li>
+                    <li>Checklist de progresso</li>
+                    <li>Dicas de como estudar</li>
+                </ul>
+                <a href="guia-didatico.html" class="card-button secondary">📖 Ver Guia</a>
+            </div>
+
+            <!-- Card 3: Exercícios Práticos -->
+            <div class="portal-card">
+                <span class="card-icon">🎯</span>
+                <h3 class="card-title">Exercícios Práticos</h3>
+                <p class="card-description">
+                    24 exercícios progressivos organizados por nível de dificuldade, com soluções e dicas incluídas.
+                </p>
+                <ul class="card-features">
+                    <li>24 exercícios progressivos</li>
+                    <li>3 níveis de dificuldade</li>
+                    <li>Soluções comentadas</li>
+                    <li>Dicas e explicações</li>
+                    <li>Desafios especiais</li>
+                </ul>
+                <a href="exercicios.html" class="card-button tertiary">💪 Praticar</a>
+            </div>
+        </div>
+
+        <div class="portal-stats">
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <div class="stat-label">Tópicos Principais<br>(Vetores, Matrizes, Ponteiros, Complexidade)</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">30+</span>
+                <div class="stat-label">Exemplos Práticos<br>Detalhados e Comentados</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <div class="stat-label">Exercícios Progressivos<br>do Básico ao Avançado</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <div class="stat-label">Didático<br>Passo a Passo Detalhado</div>
+            </div>
+        </div>
+
+        <div style="background: #dcfce7; border: 2px solid #16a34a; border-radius: 15px; padding: 2rem; margin: 3rem 0;">
+            <h3 style="color: #16a34a; margin-bottom: 1rem;">🎯 O que você vai aprender:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; text-align: left;">
+                <div>
+                    <strong>📊 Vetores (Arrays):</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>Declaração e inicialização</li>
+                        <li>Acesso e modificação</li>
+                        <li>Operações básicas</li>
+                        <li>Algoritmos de busca</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>🔢 Matrizes:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>Arrays bidimensionais</li>
+                        <li>Loops aninhados</li>
+                        <li>Operações matriciais</li>
+                        <li>Aplicações práticas</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>👉 Ponteiros:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>Endereços de memória</li>
+                        <li>Operadores & e *</li>
+                        <li>Aritmética de ponteiros</li>
+                        <li>Relação com arrays</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>📈 Complexidade:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>Notação Big O</li>
+                        <li>Análise de algoritmos</li>
+                        <li>Comparação de eficiência</li>
+                        <li>Otimização de código</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-footer">
+            <p><strong>🎓 Sobre esta plataforma:</strong></p>
+            <p>
+                Desenvolvida com foco em didática e aprendizado prático. Todos os conceitos são explicados 
+                de forma visual e interativa, permitindo que estudantes de qualquer nível possam 
+                compreender e dominar algoritmos em C de forma efetiva.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>📅 Data:</strong> 10 de setembro de 2025 |
+                <strong>🔧 Tecnologias:</strong> HTML5, CSS3, JavaScript ES6+ |
+                <strong>📱 Compatibilidade:</strong> Desktop e Mobile
+            </p>
+        </div>
+    </div>
+</body>
+</html>
