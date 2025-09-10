@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Simulador Avançado - Algoritmos em C</title>
+    <link rel="stylesheet" href="style-avancado.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Simulador interativo avançado para aprender algoritmos e estruturas de dados em C com sistema de conquistas, análise de complexidade e tutorial passo a passo.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Painel Lateral Esquerdo -->
+        <aside class="sidebar-left">
+            <h2 class="sidebar-title">📚 Exemplos Interativos</h2>
+            
+            <!-- Indicador de Progresso -->
+            <div id="progress-indicator" class="progress-indicator">
+                <div class="progress-bar-container">
+                    <div class="progress-label">Progresso: 0/5 exemplos</div>
+                    <div class="progress-bar-background">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-percentage">0%</div>
+                </div>
+            </div>
+            
+            <!-- Timer de Estudo -->
+            <div class="study-timer">
+                <h4>⏱️ Tempo de Estudo</h4>
+                <div id="study-time" class="study-time">0:00</div>
+            </div>
+            
+            <!-- Lista de Exemplos -->
+            <div class="examples-list">
+                <button class="example-btn active" data-example="vetor-basico">
+                    <div class="example-btn-title">📊 Vetor Básico</div>
+                    <div class="example-btn-subtitle">Iniciante • O(n)</div>
+                </button>
+                
+                <button class="example-btn" data-example="busca-linear">
+                    <div class="example-btn-title">🔍 Busca Linear</div>
+                    <div class="example-btn-subtitle">Intermediário • O(n)</div>
+                </button>
+                
+                <button class="example-btn" data-example="ordenacao-bubble">
+                    <div class="example-btn-title">🔄 Bubble Sort</div>
+                    <div class="example-btn-subtitle">Avançado • O(n²)</div>
+                </button>
+                
+                <button class="example-btn" data-example="matriz-jogo">
+                    <div class="example-btn-title">🎮 Matriz - Jogo da Velha</div>
+                    <div class="example-btn-subtitle">Intermediário • O(1)</div>
+                </button>
+                
+                <button class="example-btn" data-example="ponteiros-avancado">
+                    <div class="example-btn-title">👉 Ponteiros Avançados</div>
+                    <div class="example-btn-subtitle">Avançado • O(n)</div>
+                </button>
+            </div>
+            
+            <!-- Tutorial Interativo -->
+            <div id="tutorial-container" class="tutorial-container">
+                <div class="tutorial-step">
+                    <h4>🚀 Bem-vindo!</h4>
+                    <p>Explore os exemplos de código clicando nos botões acima.</p>
+                    <div class="tutorial-controls">
+                        <button onclick="previousTutorialStep()" disabled>← Anterior</button>
+                        <span>Passo 1 de 4</span>
+                        <button onclick="nextTutorialStep()">Próximo →</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área Principal do Editor -->
+        <main class="editor-area">
+            <!-- Cabeçalho do Editor -->
+            <header class="editor-header">
+                <div class="editor-title-section">
+                    <h1 id="example-title" class="editor-title">📊 Vetor Básico</h1>
+                    <div class="editor-badges">
+                        <span id="example-difficulty" class="difficulty-badge difficulty iniciante">Iniciante</span>
+                        <span id="example-complexity" class="complexity-badge complexity linear">O(n)</span>
+                    </div>
+                </div>
+                <div class="editor-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="lines-count">25</span>
+                        <span class="stat-label">linhas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="chars-count">632</span>
+                        <span class="stat-label">caracteres</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Container do Editor -->
+            <div class="code-editor-container">
+                <div class="editor-tabs">
+                    <div class="tab active">
+                        <span class="tab-icon">📄</span>
+                        <span class="tab-name">main.c</span>
+                    </div>
+                </div>
+                
+                <textarea 
+                    id="code-editor" 
+                    class="code-editor" 
+                    placeholder="// Seu código C aparecerá aqui...
+// Você pode modificar e testar diferentes variações!
+#include <stdio.h>
+
+int main() {
+    printf(&quot;Olá, mundo dos algoritmos!&quot;);
+    return 0;
+}"
+                    spellcheck="false"
+                    autocomplete="off"
+                ></textarea>
+                
+                <!-- Números de linha -->
+                <div class="line-numbers" id="line-numbers"></div>
+            </div>
+
+            <!-- Controles de Execução -->
+            <div class="execution-controls">
+                <button id="run-code" class="btn-primary">
+                    <span>▶️</span>
+                    <span>Executar Código</span>
+                </button>
+                
+                <button id="analyze-complexity" class="btn-secondary">
+                    <span>📊</span>
+                    <span>Analisar Complexidade</span>
+                </button>
+                
+                <button id="step-debug" class="btn-secondary">
+                    <span>🐛</span>
+                    <span>Debug Passo a Passo</span>
+                </button>
+                
+                <div class="speed-control">
+                    <label for="execution-speed">⚡ Velocidade:</label>
+                    <input 
+                        type="range" 
+                        id="execution-speed" 
+                        class="speed-slider" 
+                        min="500" 
+                        max="2000" 
+                        value="1000"
+                    >
+                    <span id="speed-display" class="speed-display">Normal</span>
+                </div>
+                
+                <button id="save-code" class="btn-secondary">
+                    <span>💾</span>
+                    <span>Salvar</span>
+                </button>
+                
+                <button id="share-code" class="btn-secondary">
+                    <span>🔗</span>
+                    <span>Compartilhar</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Painel Lateral Direito -->
+        <aside class="sidebar-right">
+            <!-- Informações do Exemplo -->
+            <div class="info-panel">
+                <h3>ℹ️ Informações</h3>
+                <p id="example-explanation">
+                    Este exemplo demonstra operações básicas com vetores: percorrer elementos, 
+                    calcular soma, média e encontrar o maior valor.
+                </p>
+                
+                <div id="tutorial-info" class="tutorial-info">
+                    <h4>📚 Como Funciona:</h4>
+                    <ul>
+                        <li>Declarar vetor com 5 elementos</li>
+                        <li>Inicializar variáveis de controle</li>
+                        <li>Percorrer vetor com loop for</li>
+                        <li>Calcular soma acumulativa</li>
+                        <li>Encontrar maior elemento</li>
+                        <li>Calcular média</li>
+                        <li>Exibir resultados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Saída do Programa -->
+            <div class="info-panel">
+                <h3>🖥️ Saída do Programa</h3>
+                <div id="output" class="output-area">
+                    <div class="output-placeholder">
+                        🚀 Clique em "Executar Código" para ver a saída do programa aqui!
+                        <br><br>
+                        💡 <strong>Dica:</strong> Você pode modificar o código e executar novamente para ver diferentes resultados.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passos de Execução -->
+            <div class="info-panel">
+                <h3>📋 Execução Passo a Passo</h3>
+                <div id="execution-steps" class="execution-steps-container">
+                    <p class="steps-placeholder">
+                        Os passos de execução aparecerão aqui após rodar o código.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Análise de Complexidade -->
+            <div class="info-panel">
+                <h3>📈 Análise de Performance</h3>
+                <div id="complexity-analysis" class="complexity-analysis-container">
+                    <p class="analysis-placeholder">
+                        Clique em "Analisar Complexidade" para ver uma análise detalhada da performance do algoritmo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sistema de Conquistas -->
+            <div class="info-panel">
+                <div id="achievements-container" class="achievements-container">
+                    <h3>🏆 Suas Conquistas</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">🎯</span>
+                            <h4>Primeira Compilação</h4>
+                            <p>Compile seu primeiro código!</p>
+                            <small>10 pontos</small>
+                        </div>
+                        
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">📊</span>
+                            <h4>Mestre dos Vetores</h4>
+                            <p>Execute todos os exemplos de vetores</p>
+                            <small>25 pontos</small>
+                        </div>
+                        
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">🔍</span>
+                            <h4>Explorador de Algoritmos</h4>
+                            <p>Teste 5 algoritmos diferentes</p>
+                            <small>30 pontos</small>
+                        </div>
+                        
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">📈</span>
+                            <h4>Analista de Performance</h4>
+                            <p>Analise complexidade de 5 algoritmos</p>
+                            <small>40 pontos</small>
+                        </div>
+                        
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">⚡</span>
+                            <h4>Otimizador de Código</h4>
+                            <p>Melhore a eficiência de um algoritmo</p>
+                            <small>50 pontos</small>
+                        </div>
+                        
+                        <div class="achievement-card locked">
+                            <span class="achievement-icon">🎓</span>
+                            <h4>Graduado no Tutorial</h4>
+                            <p>Complete todo o tutorial passo a passo</p>
+                            <small>100 pontos</small>
+                        </div>
+                    </div>
+                    <div class="total-points">Total: 0 pontos</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal de Compartilhamento -->
+    <div id="share-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeShareModal()">&times;</span>
+            <h2>🔗 Compartilhar Código</h2>
+            <p>Use este link para compartilhar seu código:</p>
+            <input type="text" id="share-link" readonly>
+            <button onclick="copyShareLink()">📋 Copiar Link</button>
+        </div>
+    </div>
+
+    <!-- Overlay de Loading -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>🚀 Processando seu código...</h3>
+            <p>Analisando algoritmo e preparando resultados</p>
+        </div>
+    </div>
+
+    <!-- Hotkeys Help -->
+    <div id="hotkeys-help" class="hotkeys-panel" style="display: none;">
+        <h3>⌨️ Atalhos de Teclado</h3>
+        <div class="hotkey-list">
+            <div class="hotkey-item">
+                <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+                <span>Executar código</span>
+            </div>
+            <div class="hotkey-item">
+                <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                <span>Salvar código</span>
+            </div>
+            <div class="hotkey-item">
+                <kbd>Ctrl</kbd> + <kbd>K</kbd>
+                <span>Analisar complexidade</span>
+            </div>
+            <div class="hotkey-item">
+                <kbd>F1</kbd>
+                <span>Mostrar/ocultar esta ajuda</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de Ajuda -->
+    <button id="help-button" class="help-button" onclick="toggleHotkeysHelp()">
+        <span>❓</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script-avancado.js"></script>
+    
+    <!-- Analytics e Meta Tags Adicionais -->
+    <script>
+        // Configurações adicionais
+        window.addEventListener('load', function() {
+            console.log('🎓 Simulador Avançado de Algoritmos carregado!');
+            
+            // Verificar suporte a recursos modernos
+            if ('serviceWorker' in navigator) {
+                console.log('✅ Service Worker suportado');
+            }
+            
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => {
+                    console.log('⚡ Sistema otimizado para performance');
+                });
+            }
+        });
+
+        // Atalhos de teclado globais
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        executeCode();
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        saveCode();
+                        break;
+                    case 'k':
+                        e.preventDefault();
+                        analyzeComplexity();
+                        break;
+                }
+            }
+            
+            if (e.key === 'F1') {
+                e.preventDefault();
+                toggleHotkeysHelp();
+            }
+        });
+
+        // Funções auxiliares
+        function saveCode() {
+            const code = document.getElementById('code-editor').value;
+            localStorage.setItem('saved-code', code);
+            showNotification('💾 Código salvo localmente!');
+        }
+
+        function toggleHotkeysHelp() {
+            const help = document.getElementById('hotkeys-help');
+            help.style.display = help.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showNotification(message) {
+            // Implementar sistema de notificações
+            console.log(message);
+        }
+
+        function closeShareModal() {
+            document.getElementById('share-modal').style.display = 'none';
+        }
+
+        function copyShareLink() {
+            const linkInput = document.getElementById('share-link');
+            linkInput.select();
+            document.execCommand('copy');
+            showNotification('🔗 Link copiado para a área de transferência!');
+        }
+    </script>
+
+    <!-- Meta Tags Adicionais para SEO e Redes Sociais -->
+    <meta property="og:title" content="Simulador Avançado - Algoritmos em C">
+    <meta property="og:description" content="Plataforma interativa para aprender algoritmos e estruturas de dados em C com sistema de conquistas e análise de complexidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/preview-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulador Avançado - Algoritmos em C">
+    <meta name="twitter:description" content="Aprenda algoritmos de forma interativa com este simulador avançado!">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalResource",
+        "name": "Simulador Avançado - Algoritmos em C",
+        "description": "Plataforma educacional interativa para ensino de algoritmos e estruturas de dados",
+        "educationalLevel": "Intermediate",
+        "learningResourceType": "Interactive Simulation",
+        "programmingLanguage": "C",
+        "url": "https://cordeirotelecom.github.io/portal-algoritmos-c/"
+    }
+    </script>
+</body>
+</html>
